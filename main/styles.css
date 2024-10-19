@@ -1,0 +1,568 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+    --windows-bg: #008080;
+    --window-bg: #c0c0c0;
+    --window-header: #000080;
+    --text-color: #000000;
+    --start-menu-width: 200px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'VT323', monospace;
+    background-color: var(--windows-bg);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px 20px 40px;
+}
+
+body, .taskbar, .start-button, .window, .window-header, .menu-bar, .dock {
+  transition: all 0.3s ease;
+}
+
+.desktop {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 20px;
+    gap: 20px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    max-height: calc(100vh - 60px);
+}
+
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    width: 80px;
+    height: 100px;
+}
+
+.icon img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 5px;
+}
+
+.icon span {
+    font-size: 14px;
+    word-wrap: break-word;
+    max-width: 100%;
+    line-height: 1.2;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* Existing styles remain unchanged */
+
+.window {
+    background-color: var(--window-bg);
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    box-shadow: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+    position: absolute; /* Changed from fixed to absolute */
+    top: 50px; /* Default starting position */
+    left: 50px; /* Default starting position */
+    width: 80%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    display: none;
+}
+
+.window-header {
+  background-color: var(--window-header);
+  color: white;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  user-select: none; /* Prevent text selection */
+  -webkit-user-select: none; /* For Safari */
+  -moz-user-select: none; /* For Firefox */
+  -ms-user-select: none; /* For IE10+/Edge */
+}
+
+.window-header * {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.window-title {
+    flex-grow: 1;
+    pointer-events: none; /* Allows dragging even when cursor is over the text */
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.window-content {
+    padding: 20px;
+}
+
+.contact-info {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 5px;
+    border: 2px inset #ffffff;
+    background-color: #ffffff;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+}
+
+.form-group input {
+    height: 30px;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.subject-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.subject-btn {
+    background-color: var(--window-bg);
+    border: 2px outset #ffffff;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+}
+
+.subject-btn.active {
+    border-style: inset;
+    background-color: #d4d0c8;
+}
+
+.form-group button {
+    background-color: var(--window-bg);
+    border: 2px outset #ffffff;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+}
+
+.form-group button:active {
+    border-style: inset;
+}
+
+.taskbar {
+    background-color: var(--window-bg);
+    border-top: 2px solid #ffffff;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+}
+
+.start-button {
+    background-color: var(--window-bg);
+    border: 2px outset #ffffff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.taskbar-clock {
+    background-color: var(--window-bg);
+    border: 2px inset #ffffff;
+    padding: 2px 5px;
+    font-size: 16px;
+    min-width: 85px;
+    text-align: center;
+}
+
+.start-menu {
+    position: fixed;
+    bottom: 40px;
+    left: 0;
+    width: var(--start-menu-width);
+    background-color: var(--window-bg);
+    border: 2px outset #ffffff;
+    border-bottom: none;
+    box-shadow: 2px -2px #808080;
+    display: none;
+    flex-direction: column;
+    z-index: 999;
+}
+
+.start-menu a {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.start-menu a:hover {
+    background-color: var(--window-header);
+    color: white;
+}
+
+.start-menu img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.start-menu-footer {
+    border-top: 1px solid #808080;
+    padding: 5px 0;
+}
+
+.shut-down-option {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.shut-down-option:hover {
+  background-color: var(--window-header);
+  color: white;
+}
+
+.shut-down-option img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.shut-down-dialog {
+  position: fixed;
+  top: 50vh;  /* Changed from 50% to 50vh */
+  left: 50vw; /* Changed from 50% to 50vw */
+  transform: translate(-50%, -50%);
+  font-family: 'VT323', monospace;
+  z-index: 9999; /* Increased z-index */
+  width: 300px;
+  max-width: 90%;
+  background-color: var(--window-bg);
+  border: 2px outset #ffffff;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  display: none;
+  max-height: 80vh; /* Added max-height */
+  overflow-y: auto; /* Added scroll if content is too long */
+
+  /* Debug styles */
+  outline: 3px solid red;
+  min-height: 200px; /* Temporary min-height for visibility */
+}
+
+.shut-down-dialog .window-header {
+  background-color: var(--window-header);
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  position: sticky; /* Make header stick to top */
+  top: 0;
+}
+
+.shut-down-dialog .window-content {
+  padding: 20px;
+}
+
+.shut-down-dialog p {
+  margin-bottom: 15px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.button-group button {
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  margin-left: 10px;
+  padding: 2px 8px;
+  background-color: var(--window-bg);
+  border: 2px outset #ffffff;
+  cursor: pointer;
+}
+
+.button-group button:active {
+  border-style: inset;
+}
+
+.shut-down-btn {
+  width: 80px;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+}
+
+/* .ie-window {
+  width: 80%;
+  max-width: 800px;
+  height: 80vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: #fff;
+  border: 2px solid #0054E3;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.ie-window .window-header {
+  background: linear-gradient(to bottom, #0058E6, #3481F1);
+  color: white;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ie-window .ie-toolbar {
+  background-color: #f0f0f0;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.ie-window .window-content {
+  flex-grow: 1;
+  overflow: hidden; /* Changed from auto to hidden 
+  display: flex; /* Added 
+  flex-direction: column; /* Added 
+}
+
+.ie-window .window-content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  flex-grow: 1; /* Added 
+}
+
+.ie-window .ie-toolbar .ie-btn {
+  margin-right: 5px;
+}
+
+.ie-window .ie-toolbar .ie-address-bar {
+  flex-grow: 1;
+  margin: 0 5px;
+  padding: 2px 5px;
+}
+*/
+/* Windows XP Styles */
+/* body.windowsxp {
+    font-family: 'Tahoma', Arial, sans-serif;
+    background-image: url('xp-background.jpg');
+}
+
+.windowsxp .taskbar {
+    background: linear-gradient(to bottom, #2A8DE9, #2273C7);
+    border-top: 1px solid #5DA6F5;
+}
+
+.windowsxp .start-button {
+    background: linear-gradient(to bottom, #40A2FF, #0066CC);
+    color: white;
+    border: 1px solid #1D58A3;
+    border-radius: 3px;
+}
+
+.windowsxp .window {
+    background-color: #ECE9D8;
+    border: 1px solid #0054E3;
+    border-radius: 8px;
+}
+
+.windowsxp .window-header {
+    background: linear-gradient(to bottom, #0058E6, #3481F1);
+    color: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+body.windowsxp .shut-down-dialog,
+body.windowsxp .button-group button {
+    font-family: 'Tahoma', Arial, sans-serif;
+} */
+
+/* macOS Styles */
+/*
+body.macos {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  background-image: url('macos-background.jpg');
+}
+
+.macos .taskbar {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-top: none;
+  justify-content: center;
+  padding: 5px 0;
+}
+
+.macos .start-button {
+  display: none;
+}
+
+.macos .taskbar-clock {
+  position: absolute;
+  right: 20px;
+  background: none;
+  border: none;
+}
+
+.macos .dock {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.macos .dock .icon {
+  width: 50px;
+  height: 50px;
+  transition: all 0.3s ease;
+}
+
+.macos .dock .icon:hover {
+  transform: scale(1.2);
+}
+
+.macos .dock .icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.macos .menu-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 25px;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  z-index: 1000;
+}
+
+.macos .menu-bar .apple-logo {
+  font-size: 18px;
+  margin-right: 20px;
+}
+
+.macos .menu-bar .menu-item {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.macos .window {
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.macos .window-header {
+  background: linear-gradient(to bottom, #E4E4E4, #D1D1D1);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.macos .close-btn {
+  background-color: #FF5F57;
+  border: 1px solid #E33E32;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+}
+
+body.macos .shut-down-dialog {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+body.macos .shut-down-dialog,
+body.macos .button-group button {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+} */
+
+@media (max-width: 768px) {
+    .desktop {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .icon {
+        width: 70px;
+        height: 90px;
+    }
+
+    .icon img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .icon span {
+        font-size: 12px;
+    }
+
+    .window {
+        width: 95%;
+    }
+}

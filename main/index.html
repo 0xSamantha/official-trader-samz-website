@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samantha's Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="windows95Background" class="os-background active"></div>
+    <div id="windowsXPBackground" class="os-background"></div>
+    <div id="macOSBackground" class="os-background"></div>
+
+    <div class="desktop">
+        <a href="#" class="icon" data-window="about">
+            <img src="icons/mycomputer.png" alt="About Me">
+            <span>About Me</span>
+        </a>
+        <a href="https://twitch.tv/tradersams" class="icon" target="_blank" rel="noopener">
+            <img src="icons/twitch.png" alt="Twitch">
+            <span>Twitch</span>
+        </a>
+        <a href="https://github.com/0xSamantha" class="icon" target="_blank" rel="noopener">
+            <img src="icons/terminal.png" alt="GitHub">
+            <span>GitHub</span>
+        </a>
+        <a href="#" class="icon" data-window="portfolio">
+            <img src="icons/files.png" alt="Portfolio">
+            <span>Portfolio</span>
+        </a>
+        <a href="#" class="icon" data-window="learning">
+            <img src="icons/learningcode.png" alt="Learning">
+            <span>Learning</span>
+        </a>
+        <a href="#" class="icon" data-window="social">
+            <img src="icons/internetexplorer.png" alt="Social">
+            <span>Social</span>
+        </a>
+        <a href="#" class="icon" data-window="services">
+            <img src="icons/services.png" alt="Services">
+            <span>Services</span>
+        </a>
+        <a href="#" class="icon" data-window="referrals">
+            <img src="icons/globe.png" alt="Referral Links">
+            <span>Referral/Other Links</span>
+        </a>
+        <a href="#" class="icon" data-window="contact">
+            <img src="icons/contact.png" alt="Contact">
+            <span>Contact</span>
+        </a>
+    </div>
+
+    <div id="aboutWindow" class="window">
+        <div class="window-header">
+            <div class="window-title"><span>About Me</span></div>
+            <button type="button" class="close-btn">&times;</button>
+        </div>
+        <div class="window-content">
+            <h2>Welcome to Samantha's Portfolio</h2>
+            <p>Hi, I'm Samantha! I'm a passionate developer with a love for creating what users need. My expertise includes web development, mobile apps, plus smart contracts and programs. </p>
+        </div>
+    </div>
+
+    <div id="learningWindow" class="window">
+        <div class="window-header">
+            Learning Resources
+            <button class="close-btn" type="button">&times;</button>
+        </div>
+        <div class="window-content">
+            <h2>hey there! 👋💻</h2>
+            <br>
+            <p>if you're looking to get into web3 development and don't know where to start here are some useful resources that have been personally helpful to me throughout my journey!</p>
+            <br>
+            <h3>Web3 Development</h3>
+            
+            <h4>'Gamified' Learning (best kind of learning, kidding?)</h4>
+            <ul>
+                <li><a href="https://cryptozombies.io/" target="_blank" rel="noopener">CryptoZombies</a> - awesome for Solidity and a few other select chains</li>
+                <li><a href="https://beta.solpg.io/tutorials" target="_blank" rel="noopener">sol.pg</a> - Go-to for Solana</li>
+                <li><a href="https://web3.freecodecamp.org/web3" target="_blank" rel="noopener">freeCodeCamp Web3</a> - seperate section of fCC made specifically for web3!</li>
+                <li><a href="https://ethernaut.openzeppelin.com/" target="_blank" rel="noopener">OpenZeppelin's Ethernet</a> - game for learning Web3/Solidity, requires metamask to play</li>
+            </ul>
+            <br>
+            <h4>General Web3 Resources (for when you want to go more in-depth (locked in))</h4>
+            <ul>
+                <li><a href="https://solana.com/" target="_blank" rel="noopener">Solana Website</a> and their <a href="https://www.youtube.com/c/SolanaFndn" target="_blank" rel="noopener">YouTube Channel</a> - in-depth Solana courses and guides, straight from the source. love how much time they put into educating, genuinely.</li>
+                <li><a href="https://university.alchemy.com/" target="_blank" rel="noopener">Alchemy University</a> - comprehensive Solidity and general programming learning,  </li>
+                <li><a href="https://ethereum.org/en/developers/" target="_blank" rel="noopener">Ethereum Developer Guides</a> - straight from the source</li>
+                <li><a href="https://docs.openzeppelin.com/learn/" target="_blank" rel="noopener">Open Zeppelin Learn</a> - guide on smart contracts</li>
+            </ul>
+            <br>
+            <h3>Regular Programming (because we've all been there, seriously) 💪</h3>
+            <ul>
+                <li><a href="https://www.freecodecamp.org/" target="_blank" rel="noopener">freeCodeCamp</a> - my personal favorite, tons of free courses!</li>
+                <li><a href="https://www.theodinproject.com/" target="_blank" rel="noopener">The Odin Project</a> - great for full-stack development, learning the technical and real-world aspects of working as a developer</li>
+                <li><a href="https://leetcode.com/" target="_blank" rel="noopener">LeetCode</a> - perfect for practicing your problem-solving skills</li>
+                <li><a href="https://www.codecademy.com/" target="_blank" rel="noopener">Codecademy</a> - interactive learning for various programming languages</li>
+            </ul>
+            <br>
+            <h4>if you ever get stuck or need some advice, feel free to reach out. you're amazing ily! 👩‍💻👨‍💻</h4>
+        </div>
+    </div>
+
+    <div id="servicesWindow" class="window">
+        <div class="window-header">
+            <div class="window-title"><span>Freelance Services</span></div>
+            <button type="button" class="close-btn">&times;</button>
+        </div>
+        <div class="window-content">
+            <h2>My Services</h2>
+            <ul>
+                <li>Mobile App Development</li>
+                <li>Memecoin/NFT Pages</li>
+                <li>Memecoins: Token & Market Creation, LP Burning, LP Creation, Social Medias, DexScreener</li>
+                <li>Ethereum Smart Contracts & Solana Programs</li>
+            </ul>
+        <br>
+            <p>Contact me for more information on pricing and availability.</p>
+        </div>
+    </div>
+
+    <div id="referralsWindow" class="window">
+        <div class="window-header">
+            <div class="window-title"><span>Referral/Other Links</span></div>
+            <button type="button" class="close-btn">&times;</button>
+        </div>
+        <div class="window-content">
+            <h2>Referral & Other Links</h2>
+            <ul>
+                <li><strong>Arena:</strong> <a href="https://starsarena.com/tradersamz" target="_blank" rel="noopener">https://starsarena.com/tradersamz</a></li>
+                <li><strong>Farcaster:</strong> <a href="https://warpcast.com/tradersamz" target="_blank" rel="noopener">https://warpcast.com/tradersamz</a></li>
+                <li><strong>Trojan on Solana trading bot ***</strong> (10% off fees with this code): <a href="https://t.me/diomedes_trojanbot?start=r-tradersamz" target="_blank" rel="noopener">https://t.me/diomedes_trojanbot?start=r-tradersamz</a></li>
+                <li><strong>BullX trading bot</strong> (early access to BullX & 10% off fees): <a href="https://t.me/BullxBetaBot?start=access_75KKYDRQ8VR" target="_blank" rel="noopener">https://t.me/BullxBetaBot?start=access_75KKYDRQ8VR</a></li>
+                <li><strong>Bonk trading bot</strong> (10% off fees with this code): <a href="https://t.me/bonkbot_bot?start=ref_he308" target="_blank" rel="noopener">https://t.me/bonkbot_bot?start=ref_he308</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="contactWindow" class="window">
+      <div class="window-header">
+          <div class="window-title"><span>Contact Me</span></div>
+          <button type="button" class="close-btn">&times;</button>
+      </div>
+      <div class="window-content">
+          <h2>Get in Touch</h2>
+          <div class="contact-info">
+            <br>
+              <p>Twitter: @tradersamz</p>
+          </div>
+          <h3>Send a Message</h3>
+          <br>
+          <form id="contactForm">
+              <div class="form-group">
+                  <label for="name">Name:</label>
+                  <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label>Subject:</label>
+                <div class="subject-buttons">
+                    <button type="button" class="subject-btn" data-reason="services">Services</button>
+                    <button type="button" class="subject-btn" data-reason="personal">Personal</button>
+                    <button type="button" class="subject-btn" data-reason="other">Other</button>
+                </div>
+                <input type="hidden" id="reason" name="reason">
+            </div>
+              <div class="form-group">
+                  <label for="message">Message:</label>
+                  <textarea id="message" name="message" required></textarea>
+              </div>
+              <button type="submit" class="submit-btn">Send</button>
+          </form>
+      </div>
+  </div>
+  </div>
+  <div class="menu-bar">
+    <!-- <span class="apple-logo">🍎</span> -->
+    <!-- other menu items -->
+</div>
+
+<div class="taskbar">
+    <button class="start-button">Start</button>
+    <div class="dock"></div>
+    <div id="clock" class="taskbar-clock"></div>
+</div>
+
+<div id="startMenu" class="start-menu">
+    <a href="#" data-window="about"><img src="icons/mycomputer.png" alt="About Me"> About Me</a>
+    <a href="https://twitch.tv/tradersams" target="_blank" rel="noopener"><img src="icons/twitch.png" alt="Twitch"> Twitch</a>
+    <a href="https://github.com/0xSamantha" target="_blank" rel="noopener"><img src="icons/terminal.png" alt="GitHub"> GitHub</a>
+    <a href="#" data-window="portfolio"><img src="icons/files.png" alt="Portfolio"> Portfolio</a>
+    <a href="#" data-window="learning"><img src="icons/learningcode.png" alt="Learning"> Learning</a>
+    <a href="#" data-window="social"><img src="icons/internetexplorer.png" alt="Social"> Social</a>
+    <a href="#" data-window="services"><img src="icons/services.png" alt="Services"> Services</a>
+    <a href="#" data-window="referrals"><img src="icons/globe.png" alt="Referral Links"> Referral/Other Links</a>
+    <a href="#" data-window="contact"><img src="icons/contact.png" alt="Contact"> Contact</a>
+    <div class="start-menu-footer">
+        <a href="#" class="shut-down-option"><img src="icons/shutdown.png" alt="Shut Down"> Shut Down</a>
+    </div>
+</div>
+  
+
+
+  <div id="shut-down-dialog" class="shut-down-dialog">
+    <div class="window-header">
+      Shut Down Windows
+      <button type="button" class="close-btn">&times;</button>
+    </div>
+    <div class="window-content">
+      <p>Are you sure you want to shut down?</p>
+      <div class="button-group">
+        <button id="shut-down-btn" type="button">Shut Down</button>
+        <!-- <button id="time-travel-btn" type="button">Time Travel</button> -->
+        <button id="cancel-btn" type="button">Cancel</button>
+        <!-- <button id="take-me-back-btn" type="button">Take me back</button> -->
+      </div>
+    </div>
+  </div>
+
+<div id="socialPlatformContainer"></div>
+<script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samantha's Friendster</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .friendster-profile {
+            font-family: Arial, sans-serif;
+            background-color: #D7E5F2;
+            padding: 20px;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .friendster-container {
+            background-color: #FFFFFF;
+            border: 1px solid #A3C5E8;
+            border-radius: 5px;
+        }
+        .friendster-header {
+            background-color: #3B5998;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #A3C5E8;
+        }
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #A3C5E8;
+            margin-right: 20px;
+        }
+        .profile-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .profile-info {
+            padding: 20px;
+            border-bottom: 1px solid #A3C5E8;
+        }
+        .profile-section {
+            padding: 20px;
+            border-bottom: 1px solid #A3C5E8;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #3B5998;
+            margin-bottom: 10px;
+        }
+        .friend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+        }
+        .friend {
+            text-align: center;
+            font-size: 12px;
+        }
+        .friend img {
+            width: 60px;
+            height: 60px;
+            border: 1px solid #A3C5E8;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="friendster-profile">
+        <div class="friendster-container">
+            <div class="friendster-header">
+                Friendster
+            </div>
+            <div class="profile-header">
+                <img src="/api/placeholder/100/100" alt="Samantha" class="profile-pic">
+                <div class="profile-name">Samantha C.</div>
+            </div>
+            <div class="profile-info">
+                <p><strong>Status:</strong> coding and chilling with my dogs ⚡💻</p>
+                <p><strong>Location:</strong> SoCal, CA</p>
+                <p><strong>Occupation:</strong> Software Developer</p>
+                <p><strong>Last Login:</strong> 7/18/2005</p>
+            </div>
+            <div class="profile-section">
+                <div class="section-title">About Me</div>
+                <p>Hiii. I'm Samantha, a mostly self-taught software developer. I feel like I should add more here but I was never too good at that. But I'm glad you're here.</p>
+            </div>
+            <div class="profile-section">
+                <div class="section-title">Interests</div>
+                <ul>
+                    <li>Web Development (mostly backend)</li>
+                    <li>Web3 Smart Contracts & Programs</li>
+                    <li>Video Games (Bethesda, I love you!)</li>
+                    <li>Photography</li>
+                    <li>Vintage Music</li>
+                    <li>Hanging out with my dogs</li>
+                </ul>
+            </div>
+            <div class="profile-section">
+                <div class="section-title">Friends (42)</div>
+                <div class="friend-grid">
+                    <div class="friend">
+                        <img src="/api/placeholder/60/60" alt="Ryan">
+                        Ryan
+                    </div>
+                    <div class="friend">
+                        <img src="/api/placeholder/60/60" alt="Sandra">
+                        Sandra
+                    </div>
+                    <div class="friend">
+                        <img src="/api/placeholder/60/60" alt="RJ">
+                        RJ
+                    </div>
+                    <div class="friend">
+                        <img src="/api/placeholder/60/60" alt="Vitalik">
+                        Vitalik
+                    </div>
+                    <div class="friend">
+                        <img src="/api/placeholder/60/60" alt="Emma">
+                        Emma
+                    </div>
+                    <div class="friend">
+                        <img src="/api/placeholder/60/60" alt="Alex">
+                        Alex
+                    </div>
+                    <div class="friend">
+                        <img src="/api/placeholder/60/60" alt="Sophia">
+                        Sophia
+                    </div>
+                    <div class="friend">
+                        <img src="/api/placeholder/60/60" alt="Liam">
+                        Liam
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
