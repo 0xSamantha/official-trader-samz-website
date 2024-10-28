@@ -72,18 +72,16 @@ body, .taskbar, .start-button, .window, .window-header, .menu-bar, .dock {
 /* Existing styles remain unchanged */
 
 .window {
-    background-color: var(--window-bg);
-    border: 2px solid #ffffff;
-    border-radius: 5px;
-    box-shadow: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
-    position: absolute; /* Changed from fixed to absolute */
-    top: 50px; /* Default starting position */
-    left: 50px; /* Default starting position */
-    width: 80%;
-    max-width: 600px;
-    max-height: 80vh;
-    overflow-y: auto;
-    display: none;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 400px;
+  height: 300px;
+  background-color: #c0c0c0;
+  border: 2px solid #ffffff;
+  box-shadow: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+  display: none;
+  overflow: auto;
 }
 
 .window-header {
@@ -347,6 +345,31 @@ body, .taskbar, .start-button, .window, .window-header, .menu-bar, .dock {
   border: none;
   cursor: pointer;
   margin: 5px;
+}
+
+.window .window-content {
+  font-family: 'VT323', monospace;
+  color: #000000;
+  line-height: normal;
+}
+
+.window .window-content .icon {
+  display: inline-block;
+  text-align: center;
+  margin: 10px;
+  width: 64px;
+}
+
+.window .window-content .icon img {
+  width: 32px;
+  height: 32px;
+  display: block;
+  margin: 0 auto 5px;
+}
+
+.window .window-content .icon div {
+  font-size: 12px;
+  word-wrap: break-word;
 }
 
 /* .ie-window {

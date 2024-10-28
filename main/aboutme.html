@@ -1,0 +1,171 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 95 Computer</title>
+    <style>
+        body {
+            font-family: 'VT323', monospace;
+            background-color: #008080;
+            margin: 0;
+            padding: 20px;
+        }
+        .window {
+            background-color: #c0c0c0;
+            border: 2px outset #ffffff;
+            width: 500px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .title-bar {
+            background-color: #000080;
+            color: white;
+            padding: 2px 5px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .close-button {
+            background-color: #c0c0c0;
+            border: 1px outset #ffffff;
+            width: 16px;
+            height: 16px;
+            text-align: center;
+            line-height: 16px;
+            cursor: pointer;
+        }
+        .content {
+            padding: 10px;
+        }
+        .icon {
+            display: inline-block;
+            width: 60px;
+            text-align: center;
+            margin: 10px;
+            vertical-align: top;
+        }
+        .icon img {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 5px;
+        }
+        .folder-view {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .folder-view .icon {
+            cursor: pointer;
+        }
+
+.subwindow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 200px;
+    background-color: #c0c0c0;
+    border: 2px outset #ffffff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.subwindow-header {
+    background-color: #000080;
+    color: white;
+    padding: 2px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-subwindow {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.subwindow-content {
+    padding: 10px;
+    height: calc(100% - 24px);
+    overflow-y: auto;
+}
+
+.subwindow-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.subwindow-content li {
+    margin-bottom: 5px;
+}
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="title-bar">
+            <span>Computer</span>
+            <div class="close-button">X</div>
+        </div>
+        <div class="content">
+            <div class="folder-view">
+                <div class="icon" data-subwindow="languages">
+                    <img src="/api/placeholder/32/32" alt="Languages">
+                    <div>Languages</div>
+                </div>
+                <div class="icon" data-subwindow="skills">
+                    <img src="/api/placeholder/32/32" alt="Skills">
+                    <div>Skills</div>
+                </div>
+                <div class="icon" data-subwindow="projects">
+                    <img src="/api/placeholder/32/32" alt="Projects">
+                    <div>Projects</div>
+                </div>
+            </div>
+            <div id="languages-subwindow" class="subwindow" style="display: none;">
+                <div class="subwindow-header">
+                    <span>Languages</span>
+                    <button class="close-subwindow">&times;</button>
+                </div>
+                <div class="subwindow-content">
+                    <ul>
+                        <li>JavaScript</li>
+                        <li>Python</li>
+                        <li>Solidity</li>
+                        <li>C++</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="skills-subwindow" class="subwindow" style="display: none;">
+                <div class="subwindow-header">
+                    <span>Skills</span>
+                    <button class="close-subwindow">&times;</button>
+                </div>
+                <div class="subwindow-content">
+                    <ul>
+                        <li>Web Development</li>
+                        <li>Smart Contract Development</li>
+                        <li>Mobile App Development</li>
+                        <li>UI/UX Design</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="projects-subwindow" class="subwindow" style="display: none;">
+                <div class="subwindow-header">
+                    <span>Projects</span>
+                    <button class="close-subwindow">&times;</button>
+                </div>
+                <div class="subwindow-content">
+                    <ul>
+                        <li>DeFi Platform</li>
+                        <li>NFT Marketplace</li>
+                        <li>Mobile Crypto Wallet</li>
+                        <li>Web3 Social Media App</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

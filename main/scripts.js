@@ -29,6 +29,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // handle sub-window closing
+    document.body.addEventListener('click', (e) => {
+        if (e.target.matches('.close-subwindow')) {
+            e.target.closest('.subwindow').style.display = 'none';
+        }
+    });
+
     // Contact form reason buttons
     const subjectButtons = document.querySelectorAll('.subject-btn');
     const subjectInput = document.getElementById('subject');
@@ -74,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.getElementById('shut-down-btn').addEventListener('click', () => {
-            alert('Shutting down... (Not really, this is just a simulation!)');
+            alert('shutting down... (not really, but i love you!)');
             shutDownDialog.style.display = 'none';
         });
 
@@ -212,16 +219,49 @@ function openWindow(windowId) {
     } else {
         let window = document.getElementById(windowId + 'Window');
         if (window) {
+            if (windowId === 'about' && !window.dataset.contentLoaded) {
+                fetch('aboutme.html')
+                    .then(response => response.text())
+                    .then(html => {
+                        window.querySelector('.window-content').innerHTML = html;
+                        window.dataset.contentLoaded = 'true';
+                        
+                        // Add event listeners for sub-windows
+                        const icons = window.querySelectorAll('.icon[data-subwindow]');
+                        icons.forEach(icon => {
+                            icon.addEventListener('click', () => {
+                                const subwindowId = icon.getAttribute('data-subwindow');
+                                const subwindow = window.querySelector(`#${subwindowId}-subwindow`);
+                                if (subwindow) {
+                                    subwindow.style.display = 'block';
+                                }
+                            });
+                        });
+
+                        const closeButtons = window.querySelectorAll('.close-subwindow');
+                        closeButtons.forEach(button => {
+                            button.addEventListener('click', () => {
+                                button.closest('.subwindow').style.display = 'none';
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error loading aboutme.html:', error);
+                        window.querySelector('.window-content').innerHTML = '<p>Error loading content. Please try again.</p>';
+                    });
+            }
             window.style.display = 'block';
+            window.style.zIndex = getHighestZIndex() + 1;
         }
     }
+}
     
     // set the z-index to bring the window to the front
     const openedWindow = document.getElementById(windowId + 'Window') || document.getElementById('ieWindow');
     if (openedWindow) {
         openedWindow.style.zIndex = getHighestZIndex() + 1;
     }
-}
+
 
 function loadFriendsterContent(ieWindow) {
     setTimeout(() => {
@@ -251,9 +291,6 @@ function getHighestZIndex() {
     );
 }
 
-// This function is referenced but not defined in the original code
-// You may want to implement it based on your needs
 function updateLayoutForEra() {
-    // Implementation depends on how you want to handle different eras
     console.log('Updating layout for era:', currentEra);
 }
