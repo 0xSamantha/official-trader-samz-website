@@ -1,9 +1,15 @@
+/**
+ * This site uses 98.css v0.1.20
+ * Copyright (c) 2020 Jordan Scales
+ * https://github.com/jdan/98.css/
+ * MIT License
+ */
+
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 :root {
     --windows-bg: #008080;
     --window-bg: #c0c0c0;
-    --window-header: #000080;
     --text-color: #000000;
     --start-menu-width: 200px;
 }
@@ -24,8 +30,8 @@ body {
     padding: 20px 20px 40px;
 }
 
-body, .taskbar, .start-button, .window, .window-header, .menu-bar, .dock {
-  transition: all 0.3s ease;
+body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
+    transition: all 0.3s ease;
 }
 
 .desktop {
@@ -43,6 +49,7 @@ body, .taskbar, .start-button, .window, .window-header, .menu-bar, .dock {
 
 .icon {
     display: flex;
+    font-family: 'VT323', monospace;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -67,47 +74,102 @@ body, .taskbar, .start-button, .window, .window-header, .menu-bar, .dock {
     line-height: 1.2;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+.button {
+    box-sizing: border-box;
+    border: none;
+    background: silver;
+    box-shadow: inset -1px -1px #0a0a0a,
+                inset 1px 1px #fff,
+                inset -2px -2px grey,
+                inset 2px 2px #dfdfdf;
+    border-radius: 0;
+    min-width: 75px;
+    min-height: 23px;
+    padding: 0 12px;
+    font-size: 11px;
+    font-family: 'VT323', monospace;
+    color: black;
+    position: relative;
+    cursor: pointer;
+}
 
-/* Existing styles remain unchanged */
-
+/* window styles */
 .window {
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  width: 400px;
-  height: 300px;
-  background-color: #c0c0c0;
-  border: 2px solid #ffffff;
-  box-shadow: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
-  display: none;
-  overflow: auto;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    min-width: 300px;  
+    min-height: 200px; 
+    max-width: min(90vw, 800px);   
+    max-height: min(90vh, 600px);  
+    width: auto;       
+    height: auto;      
+    background-color: #c0c0c0;
+    border: 2px solid #ffffff;
+    box-shadow: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+    display: none;
+    overflow: auto;
+  }
+
+  .title-bar {
+    background-color: #000080;
+    color: white;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+    user-select: none;
 }
 
-.window-header {
-  background-color: var(--window-header);
-  color: white;
-  padding: 5px 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: move;
-  user-select: none; /* Prevent text selection */
-  -webkit-user-select: none; /* For Safari */
-  -moz-user-select: none; /* For Firefox */
-  -ms-user-select: none; /* For IE10+/Edge */
+.title-bar .title-bar-controls {
+    display: flex;
+    align-items: center;
+    gap: 2px;
 }
 
-.window-header * {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+.title-bar * {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.title-bar button {
+    box-sizing: border-box;
+    border: none;
+    background: silver;
+    box-shadow: inset -1px -1px #0a0a0a,
+                inset 1px 1px #fff,
+                inset -2px -2px grey,
+                inset 2px 2px #dfdfdf;
+    border-radius: 0;
+    min-width: 16px;
+    min-height: 14px;
+    padding: 0;
+    font-size: 9px;
+    font-family: "VT323", monospace;
+    color: black;
+    position: relative;
+    margin-left: 2px;
+}
+
+.title-bar button:not(:disabled):active {
+    box-shadow: inset -1px -1px #ffffff,
+                inset 1px 1px #0a0a0a,
+                inset -2px -2px #dfdfdf,
+                inset 2px 2px #808080;
+    padding: 1px 0 0 1px;
+}
+
+.title-bar-text {
+    flex-grow: 1;
+    pointer-events: none;
 }
 
 .window-title {
     flex-grow: 1;
-    pointer-events: none; /* Allows dragging even when cursor is over the text */
+    pointer-events: none;
 }
 
 .close-btn {
@@ -120,8 +182,156 @@ body, .taskbar, .start-button, .window, .window-header, .menu-bar, .dock {
 
 .window-content {
     padding: 20px;
+    height: auto;      
+    min-height: 100px; 
+    overflow: auto;   
+    display: flex;
+    flex-direction: column;
+  }
+
+  .window.large {
+    min-width: 600px;
+    min-height: 400px;
+  }
+
+  .window.compact {
+    min-width: 250px;
+    min-height: 150px;
+  }  
+
+.subwindow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: #c0c0c0;
+    border: 2px outset #ffffff;
+    display: none;
+    z-index: 1100;
 }
 
+.subwindow-header {
+    background-color: #000080;
+    color: white;
+    font-family: 'VT323', monospace;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subwindow-content {
+    background-color: white;
+    border: 1px inset #808080;
+    font-family: 'VT323', monospace;
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.subwindow-header button.close-btn {
+    background-color: silver;
+    color: black;
+    box-shadow: inset -1px -1px #0a0a0a,
+                inset 1px 1px #fff,
+                inset -2px -2px grey,
+                inset 2px 2px #dfdfdf;
+    min-width: 16px;
+    min-height: 14px;
+    font-size: 9px;
+    padding: 0;
+    margin-left: 2px;
+}
+
+.subwindow-header button.close-btn:active {
+    box-shadow: inset -1px -1px #ffffff,
+                inset 1px 1px #0a0a0a,
+                inset -2px -2px #dfdfdf,
+                inset 2px 2px #808080;
+    padding: 1px 0 0 1px;
+}
+/* about window styles */
+.about-window {
+    min-width: 500px;
+    min-height: 400px;
+}
+
+.about-window .window-content {
+    display: block;
+    padding: 0;
+    overflow: auto;
+}
+ 
+/* computer folder styles */
+.computer-folder {
+    height: 100%;
+    background-color: white;
+    padding: 10px;
+}
+
+.folder-header {
+    background-color: #c0c0c0;
+    padding: 5px 10px;
+    border-bottom: 1px solid #808080;
+}
+
+.folder-title {
+    font-weight: bold;
+}
+
+.folder-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 15px;
+    padding: 15px;
+}
+
+.folder-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.folder-icon:hover {
+    background-color: #e8e8e8;
+}
+
+.folder-icon img {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 8px;
+}
+
+.icon-label {
+    font-size: 12px;
+    max-width: 80px;
+    word-wrap: break-word;
+}
+
+/* list Styles */
+.skill-list,
+.project-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.skill-list li,
+.project-list li {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.skill-list li:last-child,
+.project-list li:last-child {
+    border-bottom: none;
+}
+
+/* Contact Form Styles */
 .contact-info {
     margin-bottom: 20px;
 }
@@ -187,6 +397,7 @@ body, .taskbar, .start-button, .window, .window-header, .menu-bar, .dock {
     border-style: inset;
 }
 
+/* Taskbar Styles */
 .taskbar {
     background-color: var(--window-bg);
     border-top: 2px solid #ffffff;
@@ -221,10 +432,12 @@ body, .taskbar, .start-button, .window, .window-header, .menu-bar, .dock {
     text-align: center;
 }
 
+/* Start Menu Styles */
 .start-menu {
     position: fixed;
     bottom: 40px;
     left: 0;
+    font-family: 'VT323', monospace;
     width: var(--start-menu-width);
     background-color: var(--window-bg);
     border: 2px outset #ffffff;
@@ -259,333 +472,391 @@ body, .taskbar, .start-button, .window, .window-header, .menu-bar, .dock {
     padding: 5px 0;
 }
 
+/* Shut Down Dialog Styles */
 .shut-down-option {
-  display: flex;
-  align-items: center;
-  padding: 5px 10px;
-  text-decoration: none;
-  color: var(--text-color);
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: var(--text-color);
 }
 
 .shut-down-option:hover {
-  background-color: var(--window-header);
-  color: white;
+    background-color: var(--window-header);
+    color: white;
 }
 
 .shut-down-option img {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
 }
 
 .shut-down-dialog {
-  position: fixed;
-  top: 50vh;  /* Changed from 50% to 50vh */
-  left: 50vw; /* Changed from 50% to 50vw */
-  transform: translate(-50%, -50%);
-  font-family: 'VT323', monospace;
-  z-index: 9999; /* Increased z-index */
-  width: 300px;
-  max-width: 90%;
-  background-color: var(--window-bg);
-  border: 2px outset #ffffff;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-  display: none;
-  max-height: 80vh; /* Added max-height */
-  overflow-y: auto; /* Added scroll if content is too long */
-
-  /* Debug styles */
-  outline: 3px solid red;
-  min-height: 200px; /* Temporary min-height for visibility */
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    font-family: 'VT323', monospace;
+    z-index: 9999;
+    width: 300px;
+    max-width: 90%;
+    background-color: var(--window-bg);
+    border: 2px outset #ffffff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    display: none;
+    max-height: 80vh;
+    overflow-y: auto;
+    outline: 3px solid red;
+    min-height: 200px;
 }
 
 .shut-down-dialog .window-header {
-  background-color: var(--window-header);
-  color: white;
-  padding: 5px 10px;
-  font-weight: bold;
-  position: sticky; /* Make header stick to top */
-  top: 0;
+    background-color: var(--window-header);
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
 }
 
 .shut-down-dialog .window-content {
-  padding: 20px;
+    padding: 20px;
 }
 
 .shut-down-dialog p {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .button-group {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
 }
 
 .button-group button {
-  font-family: 'VT323', monospace;
-  font-size: 18px;
-  margin-left: 10px;
-  padding: 2px 8px;
-  background-color: var(--window-bg);
-  border: 2px outset #ffffff;
-  cursor: pointer;
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    margin-left: 10px;
+    padding: 2px 8px;
+    background-color: var(--window-bg);
+    border: 2px outset #ffffff;
+    cursor: pointer;
 }
 
 .button-group button:active {
-  border-style: inset;
+    border-style: inset;
 }
 
 .shut-down-btn {
-  width: 80px;
-  height: 30px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: none;
-  cursor: pointer;
-  margin: 5px;
+    width: 80px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
 }
 
-.window .window-content {
-  font-family: 'VT323', monospace;
-  color: #000000;
-  line-height: normal;
+/* Friendster Styles */
+.friendster-window {
+    width: 800px;
+    height: 600px;
 }
 
-.window .window-content .icon {
-  display: inline-block;
-  text-align: center;
-  margin: 10px;
-  width: 64px;
+.friendster-window .window-content {
+    display: block;
+    padding: 0;
+    overflow: auto;
+    background: white;
 }
 
-.window .window-content .icon img {
-  width: 32px;
-  height: 32px;
-  display: block;
-  margin: 0 auto 5px;
+.friendster-profile {
+    padding: 20px;
+    height: 100%;
+    background-color: #ffffff;
+    font-family: 'VT323', monospace;
 }
 
-.window .window-content .icon div {
-  font-size: 12px;
-  word-wrap: break-word;
+/* IE Toolbar */
+.ie-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
 }
 
-/* .ie-window {
-  width: 80%;
-  max-width: 800px;
-  height: 80vh;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  background-color: #fff;
-  border: 2px solid #0054E3;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+.ie-btn {
+    padding: 2px 8px;
+    margin-right: 4px;
+    background-color: #c0c0c0;
+    border: 2px outset #ffffff;
+    cursor: pointer;
+    font-family: 'VT323', monospace;
+}
+
+.ie-btn:disabled {
+    color: #808080;
+    cursor: not-allowed;
+}
+
+.ie-btn:active:not(:disabled) {
+    border-style: inset;
+}
+
+.ie-address-bar {
+    flex-grow: 1;
+    margin: 0 4px;
+    padding: 2px 4px;
+    border: 2px inset #ffffff;
+    background-color: #ffffff;
+    font-family: 'VT323', monospace;
+}
+
+.ie-icon {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.friendster-header {
+    margin-bottom: 30px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.profile-pic {
+    border: 2px solid #000080;
+    margin-right: 20px;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000080;
+    margin: 0 0 10px 0;
+}
+
+.profile-stats {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.stat-item {
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-weight: bold;
+    color: #000080;
+    margin-right: 8px;
+}
+
+/* Profile Sections */
+.profile-section {
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+
+.section-title {
+    font-size: 18px;
+    color: #000080;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #000080;
+}
+
+.section-content {
+  line-height: 1.6;
+}
+
+/* Interests List */
+.interests-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.interests-list li {
+  padding: 5px 0;
+  border-bottom: 1px dotted #ddd;
+}
+
+.interests-list li:last-child {
+  border-bottom: none;
+}
+
+/* Friends Grid */
+.friends-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 15px;
+  padding: 10px 0;
+}
+
+.friend-item {
   display: flex;
   flex-direction: column;
-}
-
-.ie-window .window-header {
-  background: linear-gradient(to bottom, #0058E6, #3481F1);
-  color: white;
-  padding: 5px 10px;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  text-align: center;
 }
 
-.ie-window .ie-toolbar {
-  background-color: #f0f0f0;
-  padding: 5px;
-  display: flex;
-  align-items: center;
+.friend-item img {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #ddd;
+  margin-bottom: 5px;
 }
 
-.ie-window .window-content {
-  flex-grow: 1;
-  overflow: hidden; /* Changed from auto to hidden 
-  display: flex; /* Added 
-  flex-direction: column; /* Added 
+.friend-name {
+  font-size: 12px;
+  color: #000080;
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
-.ie-window .window-content iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  flex-grow: 1; /* Added 
+/* Update List Styles for Services */
+.services-window ul {
+  margin: 0;
+  padding-left: 20px;
 }
 
-.ie-window .ie-toolbar .ie-btn {
-  margin-right: 5px;
+.services-window li {
+  margin-bottom: 10px;
 }
 
-.ie-window .ie-toolbar .ie-address-bar {
-  flex-grow: 1;
-  margin: 0 5px;
-  padding: 2px 5px;
-}
-*/
-/* Windows XP Styles */
-/* body.windowsxp {
-    font-family: 'Tahoma', Arial, sans-serif;
-    background-image: url('xp-background.jpg');
+/* Update List Styles for Referrals */
+.referrals-window ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
 }
 
-.windowsxp .taskbar {
-    background: linear-gradient(to bottom, #2A8DE9, #2273C7);
-    border-top: 1px solid #5DA6F5;
+.referrals-window li {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
-.windowsxp .start-button {
-    background: linear-gradient(to bottom, #40A2FF, #0066CC);
-    color: white;
-    border: 1px solid #1D58A3;
-    border-radius: 3px;
+.referrals-window li:last-child {
+  border-bottom: none;
 }
 
-.windowsxp .window {
-    background-color: #ECE9D8;
-    border: 1px solid #0054E3;
-    border-radius: 8px;
-}
+  
+#learningWindow {
+    min-width: 500px;  /* Wider for better readability of learning resources */
+  }
+  
+#contactWindow {
+    min-width: 350px;
+    min-height: 400px; /* Taller for the contact form */
+  }
+  
+/* Add these styles to your existing CSS file */
 
-.windowsxp .window-header {
-    background: linear-gradient(to bottom, #0058E6, #3481F1);
-    color: white;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
+/* Tab System Properties Styling */
+#aboutWindow {
+    width: 400px;
+    min-height: 450px;
+  }
+  
 
-body.windowsxp .shut-down-dialog,
-body.windowsxp .button-group button {
-    font-family: 'Tahoma', Arial, sans-serif;
-} */
-
-/* macOS Styles */
-/*
-body.macos {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  background-image: url('macos-background.jpg');
-}
-
-.macos .taskbar {
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  border-top: none;
-  justify-content: center;
-  padding: 5px 0;
-}
-
-.macos .start-button {
-  display: none;
-}
-
-.macos .taskbar-clock {
-  position: absolute;
-  right: 20px;
-  background: none;
-  border: none;
-}
-
-.macos .dock {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.macos .dock .icon {
-  width: 50px;
-  height: 50px;
-  transition: all 0.3s ease;
-}
-
-.macos .dock .icon:hover {
-  transform: scale(1.2);
-}
-
-.macos .dock .icon img {
-  width: 100%;
-  height: 100%;
-}
-
-.macos .menu-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 25px;
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  z-index: 1000;
-}
-
-.macos .menu-bar .apple-logo {
-  font-size: 18px;
-  margin-right: 20px;
-}
-
-.macos .menu-bar .menu-item {
-  margin-right: 15px;
-  cursor: pointer;
-}
-
-.macos .window {
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.macos .window-header {
-  background: linear-gradient(to bottom, #E4E4E4, #D1D1D1);
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-.macos .close-btn {
-  background-color: #FF5F57;
-  border: 1px solid #E33E32;
-  border-radius: 50%;
-  width: 12px;
-  height: 12px;
-}
-
-body.macos .shut-down-dialog {
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-body.macos .shut-down-dialog,
-body.macos .button-group button {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-} */
-
+/* Media Queries */
 @media (max-width: 768px) {
-    .desktop {
-        padding: 10px;
-        gap: 10px;
+  .desktop {
+      padding: 10px;
+      gap: 10px;
+  }
+
+  .icon {
+      width: 70px;
+      height: 90px;
+  }
+
+  .icon img {
+      width: 40px;
+      height: 40px;
+  }
+
+  .icon span {
+      font-size: 12px;
+  }
+
+  .window {
+    position: fixed !important; /* Override any inline positioning */
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 95vw;
+    max-width: 90vw;
+    max-height: 80vh;
+    margin: 0;
+    overflow: auto;
+  }
+
+  .window-content {
+    max-height: calc(80vh - 40px); /* Subtract header height */
+    overflow-y: auto;
+  }
+
+  .window.dragging {
+    transition: none !important;
     }
 
-    .icon {
-        width: 70px;
-        height: 90px;
-    }
+  .about-window {
+      min-width: auto;
+      min-height: auto;
+  }
 
-    .icon img {
-        width: 40px;
-        height: 40px;
-    }
+  .folder-view {
+      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+      gap: 10px;
+      padding: 10px;
+  }
 
-    .icon span {
-        font-size: 12px;
-    }
+  .subwindow {
+      width: 90%;
+      max-width: 300px;
+  }
 
-    .window {
-        width: 95%;
-    }
+  .friendster-window {
+      width: 95%;
+      height: 95vh;
+  }
+
+  .profile-header {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+
+  .profile-pic {
+      margin-right: 0;
+      margin-bottom: 15px;
+  }
+
+  .friends-grid {
+      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+      gap: 10px;
+  }
+
+  .ie-toolbar {
+      flex-wrap: wrap;
+  }
+
+  .ie-address-bar {
+      width: 100%;
+      order: -1;
+      margin: 5px 0;
+  }
 }

@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samantha's Site!!!!</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
 </head>
 <body>
+    <!-- Background Layers -->
     <div id="windows95Background" class="os-background active"></div>
-    <div id="windowsXPBackground" class="os-background"></div>
-    <div id="macOSBackground" class="os-background"></div>
 
+    <!-- Desktop Icons -->
     <div class="desktop">
         <a href="#" class="icon" data-window="about">
             <img src="icons/mycomputer.png" alt="About Me">
@@ -50,45 +51,111 @@
         </a>
     </div>
 
-    <div id="aboutWindow" class="window">
-        <div class="window-header">
-            <div class="window-title"><span>About Me</span></div>
-            <button type="button" class="close-btn">&times;</button>
+    <!-- Main Windows -->
+    <div id="aboutWindow" class="window" role="dialog" aria-label="System Properties">
+        <div class="title-bar">
+          <div class="title-bar-text">System Properties</div>
+          <div class="title-bar-controls">
+            <button class="help-btn" type="button" aria-label="Help"></button>
+            <button class="close-btn" type="button" aria-label="Close"></button>
+          </div>
         </div>
-        <div class="window-content">
-            <h2>Welcome to Samantha's Site</h2>
-            <p>Hi, I'm Samantha! I'm a passionate developer with a love for creating what users need. My expertise includes web development, mobile apps, plus smart contracts and programs. </p>
-        </div>
-        <div class="window">
-            <div class="title-bar">
-                <span>Computer</span>
-                <div class="close-button">X</div>
+        <div class="window-body">
+          <menu role="tablist">
+            <li role="tab" aria-selected="true">
+              <a href="#general">General</a>
+            </li>
+            <li role="tab">
+              <a href="#languages">Languages</a>
+            </li>
+            <li role="tab">
+              <a href="#skills">Skills</a>
+            </li>
+            <li role="tab">
+              <a href="#projects">Projects</a>
+            </li>
+          </menu>
+      
+          <!-- General Tab -->
+          <div class="window" role="tabpanel" id="general">
+            <div class="window-body">
+              <div class="system-info">
+                <div class="computer-icon">
+                  <img src="/api/placeholder/180/160" alt="Profile Picture">
+                </div>
+                <div class="info-text">
+                  <div class="info-section">
+                    <p class="section-title">System:</p>
+                    <p class="indent">Samantha C.</p>
+                    <p class="indent">Software Developer</p>
+                    <p class="indent">Based in SoCal, CA</p>
+                  </div>
+                  
+                  <div class="info-section">
+                    <p class="section-title">Status:</p>
+                    <p class="indent">Available for Projects</p>
+                    <p class="indent">Registered Developer</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="window-content">
-                <div class="icon">
-                    <img src="/api/placeholder/32/32" alt="(C:)">
-                    <div>(C:)</div>
-                </div>
-                <div class="icon">
-                    <img src="/api/placeholder/32/32" alt="3½ Floppy (A:)">
-                    <div>3½ Floppy (A:)</div>
-                </div>
-                <div class="icon">
-                    <img src="/api/placeholder/32/32" alt="Control Panel">
-                    <div>Control Panel</div>
-                </div>
-                <div class="icon">
-                    <img src="/api/placeholder/32/32" alt="Printers">
-                    <div>Printers</div>
-                </div>
+          </div>
+      
+          <!-- Languages Tab -->
+          <div class="window" role="tabpanel" id="languages" style="display: none">
+            <div class="window-body">
+              <div class="info-section">
+                <p class="section-title">Programming Languages:</p>
+                <p class="indent">JavaScript - Advanced</p>
+                <p class="indent">Python - Advanced</p>
+                <p class="indent">Solidity - Advanced</p>
+                <p class="indent">C++ - Intermediate</p>
+              </div>
             </div>
+          </div>
+      
+          <!-- Skills Tab -->
+          <div class="window" role="tabpanel" id="skills" style="display: none">
+            <div class="window-body">
+              <div class="info-section">
+                <p class="section-title">Technical Skills:</p>
+                <p class="indent">Web Development</p>
+                <p class="indent">Smart Contract Development</p>
+                <p class="indent">Mobile App Development</p>
+                <p class="indent">UI/UX Design</p>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Projects Tab -->
+          <div class="window" role="tabpanel" id="projects" style="display: none">
+            <div class="window-body">
+              <div class="info-section">
+                <p class="section-title">Current Projects:</p>
+                <p class="indent">DeFi Platform</p>
+                <p class="indent">NFT Marketplace</p>
+                <p class="indent">Mobile Crypto Wallet</p>
+                <p class="indent">Web3 Social Media App</p>
+              </div>
+            </div>
+          </div>
+      
+          <div class="button-group">
+            <button>OK</button>
+            <button>Cancel</button>
+          </div>
         </div>
-    </div>
+      </div>
+    
 
     <div id="learningWindow" class="window">
-        <div class="window-header">
-            Learning Resources
-            <button class="close-btn" type="button">&times;</button>
+        <div class="title-bar">
+            <div class="title-bar-text">Learning Resources</div>
+            <div class="title-bar-controls">
+                <button class="min-btn" type="button" aria-label="Minimize"></button>
+                <button class="max-btn" type="button" aria-label="Maximize"></button>
+                <button class="close-btn" type="button" aria-label="Close"></button>
+            </div>
         </div>
         <div class="window-content">
             <h2>hey there! 👋💻</h2>
@@ -113,7 +180,7 @@
                 <li><a href="https://docs.openzeppelin.com/learn/" target="_blank" rel="noopener">Open Zeppelin Learn</a> - guide on smart contracts</li>
             </ul>
             <br>
-            <h3>Regular Programming (because we've all been there, seriously) 💪</h3>
+            <h3>Regular Programming Resources (because we've all been there, seriously) 💪</h3>
             <ul>
                 <li><a href="https://www.freecodecamp.org/" target="_blank" rel="noopener">freeCodeCamp</a> - my personal favorite, tons of free courses!</li>
                 <li><a href="https://www.theodinproject.com/" target="_blank" rel="noopener">The Odin Project</a> - great for full-stack development, learning the technical and real-world aspects of working as a developer</li>
@@ -126,9 +193,13 @@
     </div>
 
     <div id="servicesWindow" class="window">
-        <div class="window-header">
-            <div class="window-title"><span>Freelance Services</span></div>
-            <button type="button" class="close-btn">&times;</button>
+        <div class="title-bar">
+            <div class="title-bar-text">Freelance Services</div>
+            <div class="title-bar-controls">
+                <button class="min-btn" type="button" aria-label="Minimize"></button>
+                <button class="max-btn" type="button" aria-label="Maximize"></button>
+                <button class="close-btn" type="button" aria-label="Close"></button>
+            </div>
         </div>
         <div class="window-content">
             <h2>My Services</h2>
@@ -138,15 +209,19 @@
                 <li>Memecoins: Token & Market Creation, LP Burning, LP Creation, Social Medias, DexScreener</li>
                 <li>Ethereum Smart Contracts & Solana Programs</li>
             </ul>
-        <br>
+            <br>
             <p>Contact me for more information on pricing and availability.</p>
         </div>
     </div>
 
     <div id="referralsWindow" class="window">
-        <div class="window-header">
-            <div class="window-title"><span>Referral/Other Links</span></div>
-            <button type="button" class="close-btn">&times;</button>
+        <div class="title-bar">
+            <div class="title-bar-text">Referral/Other Links</div>
+            <div class="title-bar-controls">
+                <button class="min-btn type="button" aria-label="Minimize"></button>
+                <button class="max-btn" type="button" aria-label="Maximize"></button>
+                <button class="close-btn" type="button" aria-label="Close"></button>
+            </div>
         </div>
         <div class="window-content">
             <h2>Referral & Other Links</h2>
@@ -156,96 +231,203 @@
                 <li><strong>Trojan on Solana trading bot ***</strong> (10% off fees with this code): <a href="https://t.me/diomedes_trojanbot?start=r-tradersamz" target="_blank" rel="noopener">here</a></li>
                 <li><strong>BullX trading bot</strong> (early access to BullX & 10% off fees): <a href="https://t.me/BullxBetaBot?start=access_75KKYDRQ8VR" target="_blank" rel="noopener">here</a></li>
                 <li><strong>Bonk trading bot</strong> (10% off fees with this code): <a href="https://t.me/bonkbot_bot?start=ref_he308" target="_blank" rel="noopener">here</a></li>
-                <li><strong>Grass.io:</strong> <a href="https://app.getgrass.io/register/?referralCode=Xnzgki1KD3mn3NA" target="_blank" rel="noopener">here</a></li>
             </ul>
         </div>
     </div>
 
     <div id="contactWindow" class="window">
-      <div class="window-header">
-          <div class="window-title"><span>Contact Me</span></div>
-          <button type="button" class="close-btn">&times;</button>
-      </div>
-      <div class="window-content">
-          <h2>Get in Touch</h2>
-          <div class="contact-info">
-            <br>
-              <p>Twitter: @tradersamz</p>
-          </div>
-          <h3>Send a Message</h3>
-          <br>
-          <form id="contactForm">
-              <div class="form-group">
-                  <label for="name">Name:</label>
-                  <input type="text" id="name" name="name" required>
-              </div>
-              <div class="form-group">
-                  <label for="email">Email:</label>
-                  <input type="email" id="email" name="email" required>
-              </div>
-              <div class="form-group">
-                <label>Subject:</label>
-                <div class="subject-buttons">
-                    <button type="button" class="subject-btn" data-reason="services">Services</button>
-                    <button type="button" class="subject-btn" data-reason="personal">Personal</button>
-                    <button type="button" class="subject-btn" data-reason="other">Other</button>
-                </div>
-                <input type="hidden" id="reason" name="reason">
+        <div class="title-bar">
+            <div class="title-bar-text">Contact Me</div>
+            <div class="title-bar-controls">
+                <button class="min-btn" type="button" aria-label="Minimize"></button>
+                <button class="max-btn" type="button" aria-label="Maximize"></button>
+                <button class="close-btn" type="button" aria-label="Close"></button>
             </div>
-              <div class="form-group">
-                  <label for="message">Message:</label>
-                  <textarea id="message" name="message" required></textarea>
-              </div>
-              <button type="submit" class="submit-btn">Send</button>
-          </form>
+        </div>
+        <div class="window-content">
+            <h2>Get in Touch</h2>
+            <div class="contact-info">
+                <br>
+                <p>Twitter: @tradersamz</p>
+            </div>
+            <h3>Send a Message</h3>
+            <br>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Subject:</label>
+                    <div class="subject-buttons">
+                        <button type="button" class="subject-btn" data-reason="services">Services</button>
+                        <button type="button" class="subject-btn" data-reason="personal">Personal</button>
+                        <button type="button" class="subject-btn" data-reason="other">Other</button>
+                    </div>
+                    <input type="hidden" id="reason" name="reason">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Taskbar and Start Menu -->
+    <div class="menu-bar"></div>
+
+    <div class="taskbar">
+        <button class="start-button">Start</button>
+        <div class="dock"></div>
+        <div id="clock" class="taskbar-clock"></div>
+    </div>
+
+    <div id="startMenu" class="start-menu">
+        <a href="#" data-window="about"><img src="icons/mycomputer.png" alt="About Me"> About Me</a>
+        <a href="https://twitch.tv/tradersams" target="_blank" rel="noopener"><img src="icons/twitch.png" alt="Twitch"> Twitch</a>
+        <a href="https://github.com/0xSamantha" target="_blank" rel="noopener"><img src="icons/terminal.png" alt="GitHub"> GitHub</a>
+        <a href="#" data-window="projects"><img src="icons/files.png" alt="Projects"> Projects</a>
+        <a href="#" data-window="learning"><img src="icons/learningcode.png" alt="Learning"> Learning</a>
+        <a href="#" data-window="social"><img src="icons/internetexplorer.png" alt="Social"> Social</a>
+        <a href="#" data-window="services"><img src="icons/services.png" alt="Services"> Services</a>
+        <a href="#" data-window="referrals"><img src="icons/globe.png" alt="Referral Links"> Referral/Other Links</a>
+        <a href="#" data-window="contact"><img src="icons/contact.png" alt="Contact"> Contact</a>
+        <div class="start-menu-footer">
+            <a href="#" class="shut-down-option"><img src="icons/shutdown.png" alt="Shut Down"> Shut Down</a>
+        </div>
+    </div>
+
+    <!-- Shutdown Dialog -->
+    <div id="shut-down-dialog" class="shut-down-dialog">
+        <div class="title-bar">
+            <div class="title-bar-text">Shut Down Windows</div>
+            <div class="title-bar-controls">
+                <button class="min-btn" type="button" aria-label="Minimize"></button>
+                <button class="max-btn" type="button" aria-label="Maximize"></button>
+                <button class="close-btn" type="button" aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-content">
+            <p>Are you sure you want to shut down?</p>
+            <div class="button-group">
+                <button id="shut-down-btn" type="button">Shut Down</button>
+                <button id="cancel-btn" type="button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="ieWindowTemplate" style="display: none;">
+        <div class="window ie-window">
+            <div class="title-bar">
+            <div class="title-bar-text">Internet Explorer - Friendster</div>
+            <div class="title-bar-controls">
+                <button class="min-btn" type="button" aria-label="Minimize"></button>
+                <button class="max-btn" type="button" aria-label="Maximize"></button>
+                <button class="close-btn" type="button" aria-label="Close"></button>
+            </div>
+          </div>
+          <div class="ie-toolbar">
+            <button class="ie-btn" disabled>Back</button>
+            <button class="ie-btn" disabled>Forward</button>
+            <button class="ie-btn" onclick="refreshFriendster()">Refresh</button>
+            <button class="ie-btn" onclick="refreshFriendster()">Home</button>
+            <input type="text" class="ie-address-bar" value="http://www.friendster.com/samanthac" readonly>
+            <button class="ie-btn" onclick="refreshFriendster()">Go</button>
+          </div>
+          <div class="window-content ie-content">
+            <div class="loading-animation">Loading Friendster...</div>
+          </div>
+        </div>
       </div>
-  </div>
-  </div>
-  <div class="menu-bar">
-    <!-- <span class="apple-logo">🍎</span> -->
-    <!-- other menu items -->
-</div>
+      
+      
+    <!-- Friendster Profile Content -->
+    <div id="friendsterContent" style="display: none;">
+        <div class="friendster-profile">
+            <div class="friendster-container">
+                <div class="friendster-header">Friendster</div>
+                
+                <div class="profile-header">
+                    <img src="/api/placeholder/100/100" alt="Samantha" class="profile-pic">
+                    <div class="profile-name">Samantha C.</div>
+                </div>
 
-<div class="taskbar">
-    <button class="start-button">Start</button>
-    <div class="dock"></div>
-    <div id="clock" class="taskbar-clock"></div>
-</div>
+                <div class="profile-info">
+                    <p><strong>Status:</strong> Coding, gaming, and chilling with my dogs ⚡💻</p>
+                    <p><strong>Location:</strong> SoCal, CA</p>
+                    <p><strong>Occupation:</strong> Software Developer</p>
+                    <p><strong>Last Login:</strong> 10/28/2024</p>
+                </div>
 
-<div id="startMenu" class="start-menu">
-    <a href="#" data-window="about"><img src="icons/mycomputer.png" alt="About Me"> About Me</a>
-    <a href="https://twitch.tv/tradersams" target="_blank" rel="noopener"><img src="icons/twitch.png" alt="Twitch"> Twitch</a>
-    <a href="https://github.com/0xSamantha" target="_blank" rel="noopener"><img src="icons/terminal.png" alt="GitHub"> GitHub</a>
-    <a href="#" data-window="projects"><img src="icons/files.png" alt="Projects"> Projects</a>
-    <a href="#" data-window="learning"><img src="icons/learningcode.png" alt="Learning"> Learning</a>
-    <a href="#" data-window="social"><img src="icons/internetexplorer.png" alt="Social"> Social</a>
-    <a href="#" data-window="services"><img src="icons/services.png" alt="Services"> Services</a>
-    <a href="#" data-window="referrals"><img src="icons/globe.png" alt="Referral Links"> Referral/Other Links</a>
-    <a href="#" data-window="contact"><img src="icons/contact.png" alt="Contact"> Contact</a>
-    <div class="start-menu-footer">
-        <a href="#" class="shut-down-option"><img src="icons/shutdown.png" alt="Shut Down"> Shut Down</a>
+                <div class="profile-section">
+                    <div class="section-title">About Me</div>
+                    <p>Hiii. I'm Samantha, a mostly self-taught software developer. I feel like I should add more here but I was never too good at that. I just want to work on anything that makes the world better. But I'm glad you're here.</p>
+                </div>
+
+                <div class="profile-section">
+                    <div class="section-title">Interests</div>
+                    <ul>
+                        <li>Web Development (mostly backend)</li>
+                        <li>Web3 Smart Contracts & Programs</li>
+                        <li>Video Games (Bethesda, I love you!!!!)</li>
+                        <li>Photography</li>
+                        <li>Vintage Music</li>
+                        <li>Hanging out with my dogs</li>
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    <div class="section-title">Friends (42)</div>
+                    <div class="friend-grid">
+                        <div class="friend">
+                            <img src="/api/placeholder/60/60" alt="Ryan">
+                            Ryan
+                        </div>
+                        <div class="friend">
+                            <img src="/api/placeholder/60/60" alt="Sandra">
+                            Sandra
+                        </div>
+                        <div class="friend">
+                            <img src="/api/placeholder/60/60" alt="RJ">
+                            RJ
+                        </div>
+                        <div class="friend">
+                            <img src="/api/placeholder/60/60" alt="Vitalik">
+                            Vitalik
+                        </div>
+                        <div class="friend">
+                            <img src="/api/placeholder/60/60" alt="Delaney">
+                            Delaney
+                        </div>
+                        <div class="friend">
+                            <img src="/api/placeholder/60/60" alt="Wolf">
+                            Wolf
+                        </div>
+                        <div class="friend">
+                            <img src="/api/placeholder/60/60" alt="Sophia">
+                            Sophia
+                        </div>
+                        <div class="friend">
+                            <img src="/api/placeholder/60/60" alt="Liam">
+                            Liam
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-  
 
+    <div id="socialPlatformContainer"></div>
 
-  <div id="shut-down-dialog" class="shut-down-dialog">
-    <div class="window-header">
-      Shut Down Windows
-      <button type="button" class="close-btn">&times;</button>
-    </div>
-    <div class="window-content">
-      <p>Are you sure you want to shut down?</p>
-      <div class="button-group">
-        <button id="shut-down-btn" type="button">Shut Down</button>
-        <!-- <button id="time-travel-btn" type="button">Time Travel</button> -->
-        <button id="cancel-btn" type="button">Cancel</button>
-        <!-- <button id="take-me-back-btn" type="button">Take me back</button> -->
-      </div>
-    </div>
-  </div>
-
-<div id="socialPlatformContainer"></div>
-<script src="scripts.js"></script>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
