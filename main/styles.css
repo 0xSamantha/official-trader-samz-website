@@ -108,7 +108,7 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
     border: 2px solid #ffffff;
     box-shadow: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
     display: none;
-    overflow: auto;
+    overflow: hidden;
   }
 
   .title-bar {
@@ -120,6 +120,13 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
     align-items: center;
     cursor: move;
     user-select: none;
+}
+
+.title-bar-controls {
+    display: flex;
+    align-items: center;
+    margin-left: auto; 
+    white-space: nowrap; 
 }
 
 .title-bar .title-bar-controls {
@@ -170,6 +177,10 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
 .window-title {
     flex-grow: 1;
     pointer-events: none;
+    white-space: nowrap;  
+    overflow: hidden;     
+    text-overflow: ellipsis; 
+    padding-right: 10px; 
 }
 
 .close-btn {
@@ -183,7 +194,6 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
 .window-content {
     padding: 20px;
     height: auto;      
-    min-height: 100px; 
     overflow: auto;   
     display: flex;
     flex-direction: column;
@@ -197,7 +207,25 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
   .window.compact {
     min-width: 250px;
     min-height: 150px;
-  }  
+  } 
+  
+  .window-header {
+    background-color: #000080;
+    color: white;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+    user-select: none;
+    position: sticky;
+    top: 0;
+    right: 0;
+    left: 0;
+    min-width: 100%;
+    box-sizing: border-box;
+
+  }
 
 .subwindow {
     position: absolute;
@@ -799,14 +827,19 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
   }
 
   .window {
-    position: fixed !important; /* Override any inline positioning */
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: 95vw;
-    max-width: 90vw;
-    max-height: 80vh;
-    margin: 0;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    min-width: 300px;  
+    min-height: 200px; 
+    max-width: min(90vw, 800px);   
+    max-height: min(90vh, 600px);  
+    width: auto;       
+    height: auto;      
+    background-color: #c0c0c0;
+    border: 2px solid #ffffff;
+    box-shadow: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+    display: none;
     overflow: auto;
   }
 
