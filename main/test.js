@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // dragging functionality
     function startDragging(e) {
+        // Change this line
         if (!e.target.closest('.title-bar')) return;
         
         isDragging = true;
@@ -56,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const viewportWidth = document.documentElement.clientWidth;
         
         // if the window is centered (transform applied)
-        if (currentWindow.style.transform && currentWindow.style.transform.includes('translate')) {
+        if (currentWindow.style.transform.includes('translate')) {
             currentWindow.style.transform = 'none';
             currentWindow.style.left = `${viewportWidth / 2 - currentWindow.offsetWidth / 2}px`;
             currentWindow.style.top = `${window.innerHeight / 2 - currentWindow.offsetHeight / 2}px`;
@@ -147,8 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createIEWindow() {
+        // copying template
         const template = document.getElementById('ieWindowTemplate');
-        if (!template) return null;
         const ieWindow = template.firstElementChild.cloneNode(true);
         ieWindow.id = 'ieWindow';
         return ieWindow;
@@ -178,77 +179,65 @@ document.addEventListener('DOMContentLoaded', () => {
             
             window.style.display = 'block';
             window.style.zIndex = getHighestZIndex() + 1;
-            
-            // Initialize tabs if it's the about window
-            if (windowId === 'about') {
-                setupSystemTabs();
-            }
         }
     }
 
     // Content Loading
     function loadFriendsterContent(ieWindow) {
-        if (!ieWindow) return;
-        const contentDiv = ieWindow.querySelector('.ie-content');
-        if (!contentDiv) return;
-        
-        contentDiv.innerHTML = '<div class="loading-animation">Loading Friendster...</div>';
+        ieWindow.querySelector('.ie-content').innerHTML = 
+            '<div class="loading-animation">Loading Friendster...</div>';
         setTimeout(() => {
             const friendsterContent = document.getElementById('friendsterContent');
             if (!friendsterContent) {
                 console.error('Friendster content not found');
                 return;
             }
-            contentDiv.innerHTML = friendsterContent.innerHTML;
+            ieWindow.querySelector('.ie-content').innerHTML = friendsterContent.innerHTML;
         }, 1500);
     }
 
     function setupSystemTabs() {
-        const aboutWindow = document.getElementById('aboutWindow');
-        if (!aboutWindow) return;
-
-        const tabList = aboutWindow.querySelector('.window-body');
+        const tabList = document.querySelector('#aboutWindow .window-body');
         if (!tabList) return;
     
-        const tabs = Array.from(tabList.querySelectorAll('a[href^="#"]'));
-        const panels = Array.from(aboutWindow.querySelectorAll('[role="tabpanel"]'));
-    
-        // Exit if no tabs or panels found
-        if (tabs.length === 0 || panels.length === 0) return;
+        const tabs = Array.from(tabList.querySelectorAll('a'));
+        const panels = document.querySelectorAll('#aboutWindow [role="tabpanel"]');
     
         // Hide all panels initially except the first one
         panels.forEach((panel, index) => {
-            panel.style.display = index === 0 ? 'block' : 'none';
+            if (index !== 0) {
+                panel.style.display = 'none';
+            }
         });
     
         // Set first tab as selected initially
-        tabs[0].classList.add('active');
+        if (tabs.length > 0) {
+            tabs[0].classList.add('active');
+        }
     
         // Handle tab clicks
         tabs.forEach((tab, index) => {
             tab.addEventListener('click', e => {
                 e.preventDefault();
                 
-                // Get the target panel id from href
-                const targetId = tab.getAttribute('href').substring(1);
-                const targetPanel = document.getElementById(targetId);
-                
-                if (!targetPanel) return;
-                
-                // Deactivate all tabs and hide all panels
+                // Remove active class from all tabs
                 tabs.forEach(t => t.classList.remove('active'));
-                panels.forEach(p => p.style.display = 'none');
                 
-                // Activate clicked tab and show its panel
+                // Add active class to clicked tab
                 tab.classList.add('active');
-                targetPanel.style.display = 'block';
+    
+                // Show selected panel, hide others
+                panels.forEach((panel, i) => {
+                    panel.style.display = i === index ? 'block' : 'none';
+                });
             });
-
+    
             // Add keyboard navigation
             tab.addEventListener('keydown', e => {
-                let newTab;
-                const currentIndex = tabs.indexOf(tab);
+                const targetTab = e.currentTarget;
+                const currentIndex = tabs.indexOf(targetTab);
                 
+                let newTab;
                 switch(e.key) {
                     case 'ArrowRight':
                     case 'ArrowDown':
@@ -261,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     default:
                         return;
                 }
-                
+    
                 e.preventDefault();
                 newTab.click();
                 newTab.focus();
@@ -271,14 +260,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Clock Update
     function updateClock() {
-        const clockElement = document.getElementById('clock');
-        if (!clockElement) return;
-        
         const now = new Date();
         let hours = now.getHours() % 12 || 12;
         const minutes = now.getMinutes().toString().padStart(2, '0');
         const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
-        clockElement.textContent = `${hours}:${minutes} ${ampm}`;
+        document.getElementById('clock').textContent = `${hours}:${minutes} ${ampm}`;
     }
 
     // Utility Functions
@@ -326,42 +312,31 @@ document.addEventListener('DOMContentLoaded', () => {
             startMenu.style.display = 'none';
         });
 
-        const closeBtn = shutDownDialog.querySelector('.close-btn');
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                shutDownDialog.style.display = 'none';
-            });
-        }
+        shutDownDialog.querySelector('.close-btn').addEventListener('click', () => {
+            shutDownDialog.style.display = 'none';
+        });
 
-        const shutDownBtn = document.getElementById('shut-down-btn');
-        if (shutDownBtn) {
-            shutDownBtn.addEventListener('click', () => {
-                alert('shutting down... (not really, but i love you!)');
-                shutDownDialog.style.display = 'none';
-            });
-        }
+        document.getElementById('shut-down-btn').addEventListener('click', () => {
+            alert('shutting down... (not really, but i love you!)');
+            shutDownDialog.style.display = 'none';
+        });
 
-        const cancelBtn = document.getElementById('cancel-btn');
-        if (cancelBtn) {
-            cancelBtn.addEventListener('click', () => {
-                shutDownDialog.style.display = 'none';
-            });
-        }
+        document.getElementById('cancel-btn').addEventListener('click', () => {
+            shutDownDialog.style.display = 'none';
+        });
     }
 
     // Contact Form Subject Buttons
     const subjectButtons = document.querySelectorAll('.subject-btn');
     const reasonInput = document.getElementById('reason');
 
-    if (reasonInput) {
-        subjectButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                subjectButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                reasonInput.value = button.getAttribute('data-reason') || '';
-            });
+    subjectButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            subjectButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            reasonInput.value = button.getAttribute('data-reason');
         });
-    }
+    });
 
     // Event Listeners
     document.addEventListener('click', handleStartMenu);
@@ -372,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('touchstart', startDragging);
     
     document.addEventListener('mousemove', drag);
-    document.addEventListener('touchmove', drag, { passive: false });
+    document.addEventListener('touchmove', drag);
     
     document.addEventListener('mouseup', stopDragging);
     document.addEventListener('touchend', stopDragging);
@@ -389,10 +364,8 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
             const windowId = item.getAttribute('data-window');
-            if (windowId) {
-                openWindow(windowId);
-                startMenu.style.display = 'none';
-            }
+            openWindow(windowId);
+            startMenu.style.display = 'none';
         });
     });
 
@@ -414,9 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initialize layout
-    if (typeof updateLayoutForEra === 'function') {
-        updateLayoutForEra();
-    }
+    updateLayoutForEra();
     setupSystemTabs();
 });
 
@@ -427,10 +398,8 @@ window.refreshFriendster = function() {
         ieWindow.querySelector('.ie-content').innerHTML = 
             '<div class="loading-animation">Loading Friendster...</div>';
         setTimeout(() => {
-            const friendsterContent = document.getElementById('friendsterContent');
-            if (friendsterContent) {
-                ieWindow.querySelector('.ie-content').innerHTML = friendsterContent.innerHTML;
-            }
+            const friendsterContent = document.getElementById('friendsterContent').innerHTML;
+            ieWindow.querySelector('.ie-content').innerHTML = friendsterContent;
         }, 1500);
     }
 };

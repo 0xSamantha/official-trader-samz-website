@@ -456,6 +456,15 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
     color: var(--text-color);
 }
 
+.start-menu a span {
+    position: relative;
+}
+
+.start-menu a span::first-letter {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
 .start-menu a:hover {
     background-color: var(--window-header);
     color: white;
@@ -761,15 +770,12 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
     min-width: 350px;
     min-height: 400px; /* Taller for the contact form */
   }
-  
-/* Add these styles to your existing CSS file */
 
-/* Tab System Properties Styling */
+/* tab styling */
 #aboutWindow {
     width: 400px;
     min-height: 450px;
-  }
-  
+}
 
 /* Media Queries */
 @media (max-width: 768px) {
