@@ -27,20 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleCloseButton(e) {
-        // Look for both the window close button and subwindow close button
         const closeButton = e.target.closest('.close-btn, .close-subwindow');
-        if (closeButton) {
-            // If it's a window close button
-            const window = closeButton.closest('.window');
-            if (window) {
-                window.style.display = 'none';
-                return;
-            }
-            // If it's a subwindow close button
-            const subwindow = closeButton.closest('.subwindow');
-            if (subwindow) {
-                subwindow.style.display = 'none';
-            }
+        if (!closeButton) return;
+    
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const window = closeButton.closest('.window');
+        if (window) {
+            window.style.display = 'none';
         }
     }
 
@@ -157,36 +152,24 @@ document.addEventListener('DOMContentLoaded', () => {
     function openRegularWindow(windowId) {
         const window = document.getElementById(windowId + 'Window');
         if (window) {
-            // Check if window position needs to be set
-            if (!window.style.left && !window.style.top) {
-                const viewportWidth = document.documentElement.clientWidth;
-                
-                if (viewportWidth <= 768) {
-                    // Center on mobile
-                    window.style.left = '50%';
-                    window.style.top = '50%';
-                    window.style.transform = 'translate(-50%, -50%)';
-                } else {
-                    // Cascade windows on desktop
-                    const offset = Array.from(document.querySelectorAll('.window'))
-                        .filter(w => w.style.display === 'block')
-                        .length * 20;
-                    window.style.left = `${50 + offset}px`;
-                    window.style.top = `${50 + offset}px`;
-                }
-            }
-            
+            window.style.cssText = '';
             window.style.display = 'block';
             window.style.zIndex = getHighestZIndex() + 1;
             
-            // Initialize tabs if it's the about window
+            if (document.documentElement.clientWidth <= 768) {
+                window.style.position = 'fixed';
+                window.style.top = '50%';
+                window.style.left = '50%';
+                window.style.transform = 'translate(-50%, -50%)';
+            }
+            
             if (windowId === 'about') {
                 setupSystemTabs();
             }
         }
     }
 
-    // Content Loading
+    // content loading
     function loadFriendsterContent(ieWindow) {
         if (!ieWindow) return;
         const contentDiv = ieWindow.querySelector('.ie-content');
@@ -221,30 +204,30 @@ document.addEventListener('DOMContentLoaded', () => {
             panel.style.display = index === 0 ? 'block' : 'none';
         });
     
-        // Set first tab as selected initially
+        // set first tab as selected initially
         tabs[0].classList.add('active');
     
-        // Handle tab clicks
+        // handle tab clicks
         tabs.forEach((tab, index) => {
             tab.addEventListener('click', e => {
                 e.preventDefault();
                 
-                // Get the target panel id from href
+                // get the target panel id from href
                 const targetId = tab.getAttribute('href').substring(1);
                 const targetPanel = document.getElementById(targetId);
                 
                 if (!targetPanel) return;
                 
-                // Deactivate all tabs and hide all panels
+                // deactivated all tabs and hide all panels
                 tabs.forEach(t => t.classList.remove('active'));
                 panels.forEach(p => p.style.display = 'none');
                 
-                // Activate clicked tab and show its panel
+                // activated clicked tab and its panel
                 tab.classList.add('active');
                 targetPanel.style.display = 'block';
             });
 
-            // Add keyboard navigation
+            // keyboard navigation
             tab.addEventListener('keydown', e => {
                 let newTab;
                 const currentIndex = tabs.indexOf(tab);
@@ -269,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Clock Update
+    // clock update
     function updateClock() {
         const clockElement = document.getElementById('clock');
         if (!clockElement) return;
@@ -281,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clockElement.textContent = `${hours}:${minutes} ${ampm}`;
     }
 
-    // Utility Functions
+    // utility functions
     function getHighestZIndex() {
         return Math.max(
             ...Array.from(document.querySelectorAll('.window'))
@@ -292,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function setupSubWindowListeners() {
-        // Handle opening subwindows
+        // opening subwindows
         document.querySelectorAll('.icon[data-subwindow]').forEach(icon => {
             icon.addEventListener('click', () => {
                 const subwindowId = icon.getAttribute('data-subwindow');
@@ -304,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     
-        // Handle closing subwindows
+        // closing subwindows
         document.querySelectorAll('.close-subwindow').forEach(button => {
             button.addEventListener('click', () => {
                 const subwindow = button.closest('.subwindow');
@@ -352,6 +335,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Contact Form Subject Buttons
     const subjectButtons = document.querySelectorAll('.subject-btn');
     const reasonInput = document.getElementById('reason');
+    
+    subjectButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            subjectButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            reasonInput.value = this.dataset.reason;
+        });
+    });
+
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', function(e) {
+        const button = form.querySelector('button[type="submit"]');
+        button.disabled = true;
+        button.textContent = 'Sending...';
+    });
 
     if (reasonInput) {
         subjectButtons.forEach(button => {
@@ -380,11 +378,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('selectstart', e => isDragging && e.preventDefault());
     document.addEventListener('dragstart', e => isDragging && e.preventDefault());
 
-    // Initialize clock
     updateClock();
     const clockInterval = setInterval(updateClock, 1000);
 
-    // Setup window opening from icons and start menu
+    // window opening from icons and start menu
     document.querySelectorAll('.icon[data-window], .start-menu a[data-window]').forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
@@ -396,10 +393,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Setup subwindow listeners
+    // setup subwindow listeners
     setupSubWindowListeners();
 
-    // Clean up on page unload
+    // clean up on page unload
     window.addEventListener('unload', () => {
         clearInterval(clockInterval);
         document.removeEventListener('click', handleStartMenu);
@@ -413,14 +410,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.removeEventListener('touchend', stopDragging);
     });
 
-    // Initialize layout
+    // initialize layout
     if (typeof updateLayoutForEra === 'function') {
         updateLayoutForEra();
     }
     setupSystemTabs();
 });
 
-// Global functions needed for HTML onclick handlers
+// global functions needed for HTML onclick handlers
 window.refreshFriendster = function() {
     const ieWindow = document.getElementById('ieWindow');
     if (ieWindow) {

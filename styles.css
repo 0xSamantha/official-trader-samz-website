@@ -95,38 +95,28 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
 
 /* window styles */
 .window {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    min-width: 300px;  
-    min-height: 200px; 
-    max-width: min(90vw, 800px);   
-    max-height: min(90vh, 600px);  
-    width: auto;       
-    height: auto;      
+    display: none; 
+    position: fixed;
     background-color: #c0c0c0;
     border: 2px solid #ffffff;
     box-shadow: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
-    display: none;
     overflow: hidden;
-  }
+    transition: none !important;
+    max-height: calc(100vh - 80px); 
+    margin-bottom: 40px; 
+}
 
   .title-bar {
-    background-color: #000080;
-    color: white;
-    padding: 5px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: move;
-    user-select: none;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 2 !important;
+    width: 100% !important;
 }
 
 .title-bar-controls {
-    display: flex;
-    align-items: center;
-    margin-left: auto; 
-    white-space: nowrap; 
+    position: static !important;
+    margin-left: auto !important;
+    padding-left: 8px !important;
 }
 
 .title-bar .title-bar-controls {
@@ -136,10 +126,10 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
 }
 
 .title-bar * {
-    user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    user-select: none;
 }
 
 .title-bar button {
@@ -192,12 +182,12 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
 }
 
 .window-content {
-    padding: 20px;
-    height: auto;      
-    overflow: auto;   
-    display: flex;
-    flex-direction: column;
-  }
+    height: calc(100% - 30px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 10px !important;
+    max-height: calc(100vh - 120px) !important; 
+}
 
   .window.large {
     min-width: 600px;
@@ -217,7 +207,7 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
     justify-content: space-between;
     align-items: center;
     cursor: move;
-    user-select: none;
+    -webkit-user-select: none;
     position: sticky;
     top: 0;
     right: 0;
@@ -225,6 +215,11 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
     min-width: 100%;
     box-sizing: border-box;
 
+  }
+
+  .window.dragging {
+    max-width: 90vw !important;
+    max-height: 80vh !important;
   }
 
 .subwindow {
@@ -309,19 +304,17 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
 }
 
 .folder-view {
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* Changed from auto-fit to fixed 3 columns */
     gap: 15px;
     padding: 15px;
 }
 
 .folder-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    cursor: pointer;
-    padding: 10px;
+    min-height: min-content; /* Ensures content is fully visible */
+    height: auto;
 }
 
 .folder-icon:hover {
@@ -341,6 +334,16 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
 }
 
 /* list Styles */
+.skill-list {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.skill-list ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
 .skill-list,
 .project-list {
     list-style: none;
@@ -390,6 +393,39 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
 .form-group textarea {
     height: 100px;
     resize: vertical;
+}
+
+.form-status {
+    display: none;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.success {
+    display: block;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error {
+    display: block;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.honeypot-field {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0,0,0,0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
 }
 
 .subject-buttons {
@@ -669,8 +705,12 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
 }
 
 .profile-pic {
+    width: 48px;  
+    height: 48px;  
+    object-fit: cover; 
     border: 2px solid #000080;
     margin-right: 20px;
+    border-radius: 50%; 
 }
 
 .profile-name {
@@ -791,12 +831,12 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
 
   
 #learningWindow {
-    min-width: 500px;  /* Wider for better readability of learning resources */
-  }
+    transition: none !important;
+}
   
 #contactWindow {
     min-width: 350px;
-    min-height: 400px; /* Taller for the contact form */
+    min-height: 400px; /* taller for contact form */
   }
 
 /* tab styling */
@@ -807,95 +847,32 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
 
 /* Media Queries */
 @media (max-width: 768px) {
-  .desktop {
-      padding: 10px;
-      gap: 10px;
-  }
-
-  .icon {
-      width: 70px;
-      height: 90px;
-  }
-
-  .icon img {
-      width: 40px;
-      height: 40px;
-  }
-
-  .icon span {
-      font-size: 12px;
-  }
-
-  .window {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    min-width: 300px;  
-    min-height: 200px; 
-    max-width: min(90vw, 800px);   
-    max-height: min(90vh, 600px);  
-    width: auto;       
-    height: auto;      
-    background-color: #c0c0c0;
-    border: 2px solid #ffffff;
-    box-shadow: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
-    display: none;
-    overflow: auto;
-  }
-
-  .window-content {
-    max-height: calc(80vh - 40px); /* Subtract header height */
-    overflow-y: auto;
-  }
-
-  .window.dragging {
-    transition: none !important;
+    .window {
+        width: 92% !important;
+        height: auto !important;
+        max-height: calc(100vh - 100px) !important;
+        margin-bottom: 60px;
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        margin: 0 !important;
     }
 
-  .about-window {
-      min-width: auto;
-      min-height: auto;
-  }
+    #learningWindow {
+        width: 380px !important;
+        height: 700px !important;
+        max-width: 380px !important;
+        max-height: 700px !important;
+    }
 
-  .folder-view {
-      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-      gap: 10px;
-      padding: 10px;
-  }
+    #learningWindow .window-content {
+        height: calc(100% - 25px) !important;
+        padding: 12px !important;
+        overflow-y: auto !important;
+    }
 
-  .subwindow {
-      width: 90%;
-      max-width: 300px;
-  }
-
-  .friendster-window {
-      width: 95%;
-      height: 95vh;
-  }
-
-  .profile-header {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-  }
-
-  .profile-pic {
-      margin-right: 0;
-      margin-bottom: 15px;
-  }
-
-  .friends-grid {
-      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-      gap: 10px;
-  }
-
-  .ie-toolbar {
-      flex-wrap: wrap;
-  }
-
-  .ie-address-bar {
-      width: 100%;
-      order: -1;
-      margin: 5px 0;
-  }
+    .folder-view {
+        grid-template-columns: repeat(2, 1fr); /* Switch to 2 columns on mobile */
+    }
 }

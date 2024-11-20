@@ -6,6 +6,7 @@
     <title>Samantha's Site!!!!</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/98.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <!-- Background Layers -->
@@ -102,46 +103,149 @@
           </div>
       
           <!-- Languages Tab -->
-          <div class="window" role="tabpanel" id="languages" style="display: none">
+          <div id="languages" class="window" role="tabpanel" style="display: none">
             <div class="window-body">
-              <div class="info-section">
-                <p class="section-title">Programming Languages:</p>
-                <p class="indent">JavaScript - Advanced</p>
-                <p class="indent">Python - Advanced</p>
-                <p class="indent">Solidity - Advanced</p>
-                <p class="indent">C++ - Intermediate</p>
-              </div>
+                <div class="tree-view">
+                    <details open>
+                        <summary><strong style="color: purple">Programming Languages</strong></summary>
+                        <ul>
+                            <li>JavaScript/TypeScript</li>
+                            <li>Python</li>
+                            <li>Solidity</li>
+                            <li>Rust</li>
+                            <li>C</li>
+                            <li>C++</li>
+                            <li>C#</li>
+                        </ul>
+                    </details>
+                    
+                    <details open>
+                        <summary><strong style="color: purple">Frontend</strong></summary>
+                        <ul>
+                            <li>HTML5/CSS3</li>
+                            <li>React/Next.js</li>
+                            <li>TailwindCSS</li>
+                        </ul>
+                    </details>
+                    
+                    <details open>
+                        <summary><strong style="color: purple">Backend</strong></summary>
+                        <ul>
+                            <li>Node.js/Express.js</li>
+                            <li>Django</li>
+                        </ul>
+                    </details>
+                    
+                    <details open>
+                        <summary><strong style="color: purple">Blockchain</strong></summary>
+                        <ul>
+                            <li>EVM Development</li>
+                            <li>Solana Program Development</li>
+                            <li>Web3.js/Ethers.js</li>
+                            <li>Solana-py</li>
+                            <li>Anchor/Seahorse</li>
+                            <li>IPFS/Arweave</li>
+                        </ul>
+                    </details>
+                    
+                    <details open>
+                        <summary><strong style="color: purple">Data Analysis</strong></summary>
+                        <ul>
+                            <li>Excel</li>
+                            <li>Pandas</li>
+                            <li>NumPy</li>
+                            <li>Matplotlib</li>
+                            <li>Seaborn</li>
+                        </ul>
+                    </details>
+                    
+                    <details open>
+                        <summary><strong style="color: purple">Databases</strong></summary>
+                        <ul>
+                            <li>PostgreSQL/MySQL</li>
+                            <li>MongoDB</li>
+                        </ul>
+                    </details>
+                </div>
             </div>
-          </div>
+        </div>
       
           <!-- Skills Tab -->
-          <div class="window" role="tabpanel" id="skills" style="display: none">
+          <div id="skills" class="window" role="tabpanel" style="display: none">
             <div class="window-body">
-              <div class="info-section">
-                <p class="section-title">Technical Skills:</p>
-                <p class="indent">Web Development</p>
-                <p class="indent">Smart Contract Development</p>
-                <p class="indent">Mobile App Development</p>
-                <p class="indent">UI/UX Design</p>
-              </div>
+                <div class="tree-view">
+                    <details open>
+                        <summary><strong style="color: purple">Frontend Development</strong></summary>
+                        <ul>
+                            <li>HTML5/CSS3</li>
+                            <li>JavaScript ES6+</li>
+                            <li>Responsive Design</li>
+                            <li>UI/UX Implementation</li>
+                            <li>CSS Animations</li>
+                        </ul>
+                    </details>
+                    <details open>
+                        <summary><strong style="color: purple">Web3 Development</strong></summary>
+                        <ul>
+                            <li>NFT Landing Pages</li>
+                            <li>Memecoin Websites</li>
+                            <li>Wallet Integration</li>
+                            <li>Minting Interfaces</li>
+                        </ul>
+                    </details>
+                    <details open>
+                        <summary><strong style="color: purple">Technical Skills</strong></summary>
+                        <ul>
+                            <li>Component Architecture</li>
+                            <li>State Management</li>
+                            <li>Version Control</li>
+                            <li>Error Handling</li>
+                            <li>Performance Optimization</li>
+                        </ul>
+                    </details>
+                    <details open>
+                        <summary><strong style="color: purple">Project Types</strong></summary>
+                        <ul>
+                            <li><strong>NFT Projects</strong>
+                                <ul>
+                                    <li>Collection Displays</li>
+                                    <li>Mint Functions</li>
+                                </ul>
+                            </li>
+                            <li><strong>Memecoin Sites</strong>
+                                <ul>
+                                    <li>Token Information</li>
+                                    <li>Community Sections</li>
+                                    <li>DEX Integration</li>
+                                </ul>
+                            </li>
+                            <li><strong>Static Websites</strong>
+                                <ul>
+                                    <li>Landing Pages</li>
+                                    <li>Documentation</li>
+                                    <li>Contact Forms</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </details>
+                </div>
             </div>
-          </div>
+        </div>
       
           <!-- Projects Tab -->
           <div class="window" role="tabpanel" id="projects" style="display: none">
             <div class="window-body">
               <div class="info-section">
-                <p class="section-title">Current Projects:</p>
-                <p class="indent">DeFi Platform</p>
-                <p class="indent">NFT Marketplace</p>
-                <p class="indent">Mobile Crypto Wallet</p>
-                <p class="indent">Web3 Social Media App</p>
+                <p class="section-title"><strong>Recent Projects:</strong></p>
+                <p class="indent">LP Burn Tracker</p>
+                <p class="indent">NFT/Memecoin Home Page</p>
+                <p class="indent">Bitcoin Price Predictor</p>
+                <p class="indent">Disneyland Trip Checklist</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    
 
     <div id="learningWindow" class="window">
         <div class="title-bar">
@@ -253,7 +357,7 @@
             </div>
             <h3>Send a Message</h3>
             <br>
-            <form id="contactForm">
+            <form id="contactForm" action="https://formspree.io/f/mnnadeky" method="POST">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
@@ -263,7 +367,7 @@
                     <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label>Subject:</label>
+                    <label for="reason">Subject:</label>
                     <div class="subject-buttons">
                         <button type="button" class="subject-btn" data-reason="services">Services</button>
                         <button type="button" class="subject-btn" data-reason="personal">Personal</button>
@@ -275,6 +379,10 @@
                     <label for="message">Message:</label>
                     <textarea id="message" name="message" required></textarea>
                 </div>
+                <!-- spam prevention -->
+                <input type="text" name="_honey" style="display:none">
+                <!-- disable captcha -->
+                <input type="hidden" name="_captcha" value="false">
                 <button type="submit" class="submit-btn">Send</button>
             </form>
         </div>
@@ -355,7 +463,7 @@
                 <div class="friendster-header">Friendster</div>
                 
                 <div class="profile-header">
-                    <img src="/api/placeholder/100/100" alt="Samantha" class="profile-pic">
+                    <img src="icons/sam.JPG" alt="Samantha" class="profile-pic">
                     <div class="profile-name">Samantha C.</div>
                 </div>
 
@@ -368,18 +476,23 @@
 
                 <div class="profile-section">
                     <div class="section-title">About Me</div>
-                    <p>Hiii. I'm Samantha, a mostly self-taught software developer. I feel like I should add more here but I was never too good at that. I just want to work on anything that makes the world better. But I'm glad you're here.</p>
+                    <p>Hiii. I'm Samantha, a mostly self-taught software developer. I went to school for it for a couple years, thought I wanted to be a doctor instead - then I found crypto and fell in love with all the technological potential in the field and then I fell even more in love on the positive potential for AI. I look forward to and hope to be a part of blockchain technologies' real mainstream adoption - as a transparent, decentralized ledger to record anything from healthcare coding to tracking system-wide store credit. To be a part of something that has the potential to change the foundation of our modern society, as well as be a good community member to everyone around me, is honestly my ultimate goal in life. That sounds kinda silly and unimportant now, but just wait!.. </p>
                 </div>
 
                 <div class="profile-section">
-                    <div class="section-title">Interests</div>
+                    <div class="section-title">Other Interests</div>
                     <ul>
-                        <li>Web Development (mostly backend)</li>
+                        <li>Crypto</li>
                         <li>Web3 Smart Contracts & Programs</li>
                         <li>Video Games (Bethesda, I love you!!!!)</li>
                         <li>Photography</li>
+                        <li>Cooking</li>
+                        <li>Guitar</li>
                         <li>Vintage Music</li>
-                        <li>Hanging out with my dogs</li>
+                        <li>Architecture/Art History</li>
+                        <li>Hanging out with my dogs (or any animals really, lol)</li>
+                        <li>Learning anything new!</li>
+                        <li>Machine Learning/AI</li>
                     </ul>
                 </div>
 <!-- 
@@ -415,8 +528,8 @@
                             Iryna
                         </div>
                         <div class="friend">
-                            <img src="/api/placeholder/60/60" alt="Doc">
-                            Doc
+                            <img src="/api/placeholder/60/60" alt="Anakin">
+                            Anakin
                         </div>
                     </div>
                 </div>
