@@ -47,6 +47,14 @@
             <img src="icons/globe.png" alt="Referral Links">
             <span>Referral/Other Links</span>
         </a>
+        <a href="#" class="icon" data-window="crypto">
+            <img src="icons/chart.png" alt="Crypto Prices">
+            <span>Crypto</span>
+        </a>
+        <a href="#" class="icon" data-window="game">
+            <img src="icons/videogames.png" alt="Dragon Slayer">
+            <span>Dragon Slayer</span>
+        </a>
         <a href="#" class="icon" data-window="contact">
             <img src="icons/contact.png" alt="Contact">
             <span>Contact</span>
@@ -92,7 +100,10 @@
                     <p class="indent">Software Developer</p>
                     <p class="indent">Based in SoCal, CA</p>
                   </div>
-                  
+                  <br>
+                  <br>
+                  <br>
+                  <br>
                   <div class="info-section">
                     <p class="section-title">Status:</p>
                     <p class="indent">Available for Projects</p>
@@ -101,6 +112,15 @@
                 </div>
               </div>
             </div>
+
+
+
+
+            <div class="status-bar">
+                <p class="status-bar-field">Samz Computer</p>
+                <p class="status-bar-field">Section 1</p>
+                <p class="status-bar-field">CPU Usage: 24%</p>
+              </div>
           </div>
       
           <!-- Languages Tab -->
@@ -252,6 +272,28 @@
         </div>
       </div>
 
+      <div id="projectsWindow" class="window">
+        <div class="title-bar">
+            <div class="title-bar-text">Projects</div>
+            <div class="title-bar-controls">
+                <button class="min-btn" type="button" aria-label="Minimize"></button>
+                <button class="max-btn" type="button" aria-label="Maximize"></button>
+                <button class="close-btn" type="button" aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-content">
+            <!-- Project content can go here -->
+            <div class="project-grid">
+                <div class="project-item">
+                    <h3>Coming Soon!</h3>
+                    <p>Deciding which ones I want to showcase..</p>
+                    <!-- <button onclick="openWindow('game')">Launch Game</button> -->
+                </div>
+                <!-- Add other projects here -->
+            </div>
+        </div>
+    </div>
+
     <div id="learningWindow" class="window">
         <div class="title-bar">
             <div class="title-bar-text">Learning Resources</div>
@@ -345,6 +387,39 @@
         </div>
     </div>
 
+    <div id="cryptoWindow" class="window">
+        <div class="title-bar">
+            <div class="title-bar-text">
+                Crypto Prices
+            </div>
+            <div class="title-bar-controls">
+                <button class="min-btn type="button" aria-label="Minimize"></button>
+                <button class="max-btn" type="button" aria-label="Maximize"></button>
+                <button class="close-btn" type="button" aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-content">
+            <button class="refresh-btn">Refresh Prices</button>
+            <div id="cryptoPrices">
+                Loading prices...
+            </div>
+        </div>
+    </div>
+
+    <div id="gameWindow" class="window">
+        <div class="title-bar">
+            <div class="title-bar-text">Dragon Slayer</div>
+            <div class="title-bar-controls">
+                <button class="min-btn type="button" aria-label="Minimize"></button>
+                <button class="max-btn" type="button" aria-label="Maximize"></button>
+                <button class="close-btn" type="button" aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-content">
+            <iframe src="/game/game.html" width="100%" height="100%" frameborder="0"></iframe>
+        </div>
+    </div>
+
     <div id="contactWindow" class="window">
         <div class="title-bar">
             <div class="title-bar-text">Contact Me</div>
@@ -411,6 +486,8 @@
         <a href="#" data-window="social"><img src="icons/internetexplorer.png" alt="Social"><span>Social</span></a>
         <a href="#" data-window="services"><img src="icons/services.png" alt="Services"><span>Services</span></a>
         <a href="#" data-window="referrals"><img src="icons/globe.png" alt="Referral Links"><span>Referral/Other Links</span></a>
+        <a href="#" data-window="crypto"><img src="icons/chart.png" alt="Crypto Prices"><span>Crypto</span></a>
+        <a href="#" data-window="dragon slayer"><img src="icons/videogames.png" alt="Dragon Slayer"><span>Dragon Slayer</span></a>
         <a href="#" data-window="contact"><img src="icons/contact.png" alt="Contact"><span>Contact</span></a>
         <div class="start-menu-footer">
             <a href="#" class="shut-down-option"><img src="icons/shutdown.png" alt="Shut Down"><span>Shut Down</span></a>

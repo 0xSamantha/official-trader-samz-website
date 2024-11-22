@@ -1,0 +1,112 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    image-rendering: pixelated;
+  }
+  
+  #text {
+    background-color: #000;
+    color: #0f0;
+    padding: 10px;
+    border: 2px solid #0f0;
+    box-shadow: 0 0 10px #0f0;
+    margin-bottom: 10px;
+  }
+  
+  #game {
+    max-width: 500px;
+    max-height: 400px;
+    background-color: #000;
+    color: #fff;
+    margin: 30px auto 0;
+    padding: 20px;
+    border: 4px solid #0f0;
+    box-shadow: 0 0 20px #0f0, inset 0 0 10px #0f0;
+  }
+  
+  #controls, #stats {
+    border: 2px solid #0f0;
+    color: #0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  #monsterStats {
+    display: none;
+    border: 2px solid #f00;
+    padding: 10px;
+    color: #fff;
+    background-color: #300;
+    box-shadow: 0 0 10px #f00;
+  }
+  
+  .stat {
+    padding-right: 10px;
+    text-shadow: 2px 2px #000;
+  }
+  
+  button { 
+    cursor: pointer;
+    color: #fff;
+    background-color: #008;
+    border: 2px solid #00f;
+    padding: 5px 10px;
+    margin: 5px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 3px 3px #00f;
+    transition: all 0.1s;
+  }
+  
+  button:hover {
+    background-color: #00f;
+    box-shadow: 1px 1px #008;
+    transform: translate(2px, 2px);
+  }
+  
+  button:active {
+    background-color: #004;
+    box-shadow: 0 0 #008;
+    transform: translate(3px, 3px);
+  }
+  
+  h1 {
+    font-size: 2.5em;
+    text-align: center;
+    color: #0f0;
+    text-shadow: 3px 3px #008, -3px -3px #080;
+    margin-bottom: 20px;
+  }
+  
+  /* health and gold icons */
+  #stats::before {
+    content: "♥ ";
+    color: #f00;
+    font-size: 1.2em;
+  }
+  
+  #goldText::before {
+    content: "☼ ";
+    color: #ff0;
+    font-size: 1.2em;
+  }
+  
+  /* scanlines effect */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+  }
