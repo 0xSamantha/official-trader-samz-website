@@ -463,7 +463,12 @@
                 <input type="text" name="_honey" style="display:none">
                 <!-- disable captcha -->
                 <input type="hidden" name="_captcha" value="false">
-                <button type="submit" class="submit-btn">Send</button>
+                <!-- prevent redirect -->
+                <input type="hidden" name="_next" value="false">
+                <div class="form-group">
+                    <button type="submit" class="submit-btn">Send</button>
+                </div>
+                <div id="formStatus" class="form-status"></div>
             </form>
         </div>
     </div>

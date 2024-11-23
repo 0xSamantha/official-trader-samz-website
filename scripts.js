@@ -530,10 +530,14 @@ function openCryptoWindow() {
     }
 }
 
-    // Contact Form Subject Buttons
-    const subjectButtons = document.querySelectorAll('.subject-btn');
-    const reasonInput = document.getElementById('reason');
-    
+    // contact form handling
+const subjectButtons = document.querySelectorAll('.subject-btn');
+const reasonInput = document.getElementById('reason');
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+
+// subject button handling
+if (reasonInput) {
     subjectButtons.forEach(button => {
         button.addEventListener('click', function() {
             subjectButtons.forEach(btn => btn.classList.remove('active'));
@@ -541,23 +545,56 @@ function openCryptoWindow() {
             reasonInput.value = this.dataset.reason;
         });
     });
+}
 
-    const form = document.getElementById('contactForm');
-    form.addEventListener('submit', function(e) {
-        const button = form.querySelector('button[type="submit"]');
-        button.disabled = true;
-        button.textContent = 'Sending...';
-    });
-
-    if (reasonInput) {
-        subjectButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                subjectButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                reasonInput.value = button.getAttribute('data-reason') || '';
+// form submission handling
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const submitBtn = this.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+        }
+        
+        try {
+            const response = await fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this),
+                headers: {
+                    'Accept': 'application/json'
+                }
             });
-        });
-    }
+            
+            if (response.ok) {
+                formStatus.textContent = 'Message sent successfully!';
+                formStatus.className = 'form-status success';
+                this.reset();
+                
+                // reset subject buttons
+                subjectButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // hide success message after 5 seconds
+                setTimeout(() => {
+                    formStatus.textContent = '';
+                    formStatus.className = 'form-status';
+                }, 5000);
+            } else {
+                throw new Error('Failed to send message');
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            formStatus.textContent = 'Error sending message. Please try again.';
+            formStatus.className = 'form-status error';
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send';
+            }
+        }
+    });
+}
 
 // global functions needed for HTML onclick handlers
 window.refreshFriendster = function() {
