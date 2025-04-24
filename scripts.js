@@ -116,10 +116,13 @@ document.addEventListener('DOMContentLoaded', () => {
             openGameWindow();
         } else if (windowId === 'crypto') {
             openCryptoWindow();
+        } else if (windowId === 'aiCamera') {
+            openRegularWindow('aiCamera');
         } else {
             openRegularWindow(windowId);
         }
     }
+    
     
     function openGameWindow() {
         const gameWindow = document.getElementById('gameWindow');
@@ -595,6 +598,52 @@ if (contactForm) {
         }
     });
 }
+
+async function startCameraProcess() {
+    const video = document.getElementById('cameraPreview');
+    const status = document.getElementById('cameraStatus');
+
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+        video.style.display = 'block';
+        status.textContent = "Camera access granted. Capturing image...";
+
+        // After 2 seconds, capture frame
+        setTimeout(() => {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+
+            const imageData = canvas.toDataURL('image/jpeg');
+
+            // Send to your Python model (backend)
+            fetch('/run-model', {
+                method: 'POST',
+                body: JSON.stringify({ image: imageData }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                status.textContent = `Result: ${data.result}`;
+            })
+            .catch(err => {
+                console.error(err);
+                status.textContent = 'Error running model.';
+            });
+
+            // Stop camera
+            stream.getTracks().forEach(track => track.stop());
+            video.style.display = 'none';
+        }, 2000);
+    } catch (err) {
+        status.textContent = 'Camera access denied.';
+    }
+}
+
 
 // global functions needed for HTML onclick handlers
 window.refreshFriendster = function() {
