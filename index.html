@@ -60,10 +60,12 @@
         <a href="#" class="icon" data-window="game">
             <img src="icons/videogames.png" alt="Dragon Slayer">
             <span>Dragon Slayer</span>
+            <!---
         <a href="#" class="icon" data-window="aiCamera">
                 <img src="icons/camera.png" alt="AI Camera">
                 <span>AI Camera</span>
         </a>  
+    -->
         </a>
         <a href="#" class="icon" data-window="contact">
             <img src="icons/contact.png" alt="Contact">
@@ -123,24 +125,7 @@
                 </div>
               </div>
             </div>
-
-            <div id="aiCameraWindow" class="window">
-                <div class="title-bar">
-                  <div class="title-bar-text">AI Camera</div>
-                  <div class="title-bar-controls">
-                    <button class="close-btn" aria-label="Close"></button>
-                  </div>
-                </div>
-                <div class="window-content">
-                  <p>Click below to start image generation using your camera.</p>
-                  <button class="submit-btn" onclick="startCameraProcess()">Start Camera</button>
-                  <video id="cameraPreview" width="100%" autoplay playsinline style="display:none; margin-top: 10px;"></video>
-                  <p id="cameraStatus" style="margin-top: 10px;"></p>
-                </div>
-              </div>
               
-
-
 
 
             <div class="status-bar">
@@ -446,6 +431,24 @@
             <iframe src="/game/game.html" width="100%" height="100%" frameborder="0"></iframe>
         </div>
     </div>
+<!---
+    <div id="aiCameraWindow" class="window">
+                <div class="title-bar">
+                  <div class="title-bar-text">AI Camera</div>
+                  <div class="title-bar-controls">
+                <button class="min-btn" type="button" aria-label="Minimize"></button>
+                <button class="max-btn" type="button" aria-label="Maximize"></button>
+                <button class="close-btn" type="button" aria-label="Close"></button>
+            </div>
+                </div>
+                <div class="window-content">
+                  <p>Click below to start image generation using your camera.</p>
+                  <button class="submit-btn" onclick="startCameraProcess()">Start Camera</button>
+                  <video id="cameraPreview" width="100%" autoplay playsinline style="display:none; margin-top: 10px;"></video>
+                  <p id="cameraStatus" style="margin-top: 10px;"></p>
+                </div>
+              </div>
+            -->
 
     <div id="contactWindow" class="window">
         <div class="title-bar">
@@ -520,7 +523,7 @@
         <a href="#" data-window="referrals"><img src="icons/globe.png" alt="Referral Links"><span>Referral/Other Links</span></a>
         <a href="#" data-window="crypto"><img src="icons/chart.png" alt="Crypto Prices"><span>Crypto</span></a>
         <a href="#" data-window="dragon slayer"><img src="icons/videogames.png" alt="Dragon Slayer"><span>Dragon Slayer</span></a>
-        <a href="#" data-window="aiCamera"><img src="icons/camera.png" alt="AI Camera"><span>AI Camera</span></a>
+        <!--<a href="#" data-window="aiCamera"><img src="icons/camera.png" alt="AI Camera"><span>AI Camera</span></a>-->
         <a href="#" data-window="contact"><img src="icons/contact.png" alt="Contact"><span>Contact</span></a>
         <div class="start-menu-footer">
             <a href="#" class="shut-down-option"><img src="icons/shutdown.png" alt="Shut Down"><span>Shut Down</span></a>
@@ -657,6 +660,7 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands"></script>
     <script src="scripts.js"></script>
 </body>
 </html>
