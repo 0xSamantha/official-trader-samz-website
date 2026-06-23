@@ -1150,7 +1150,7 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
     font-family: 'VT323', monospace;
     color: #6d2060;
     background-color: #ffd9ec;
-    background-image: url("https://www.fillster.com/images/backgrounds/2w.gif");
+    background-image: url("icons/sparkle-bg.gif");
     background-repeat: repeat;
     background-attachment: fixed;
 }
