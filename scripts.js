@@ -204,15 +204,33 @@ document.addEventListener('DOMContentLoaded', () => {
         const contentDiv = ieWindow.querySelector('.ie-content');
         if (!contentDiv) return;
         
-        contentDiv.innerHTML = '<div class="loading-animation">Loading Friendster...</div>';
+        contentDiv.innerHTML = '<div class="loading-animation">Loading MySpace...</div>';
         setTimeout(() => {
             const friendsterContent = document.getElementById('friendsterContent');
             if (!friendsterContent) {
-                console.error('Friendster content not found');
+                console.error('Social content not found');
                 return;
             }
             contentDiv.innerHTML = friendsterContent.innerHTML;
+            renderLastUpdated(contentDiv);
         }, 1500);
+    }
+
+    // Show the "last updated" time in each visitor's own timezone.
+    window.renderLastUpdated = renderLastUpdated;
+    function renderLastUpdated(contentDiv) {
+        if (!contentDiv) return;
+        const page = contentDiv.querySelector('#favoritesPage');
+        const target = contentDiv.querySelector('.last-updated-time');
+        if (!page || !target) return;
+
+        const updated = new Date(page.getAttribute('data-updated'));
+        if (isNaN(updated)) return;
+
+        target.textContent = updated.toLocaleString(undefined, {
+            year: 'numeric', month: 'long', day: 'numeric',
+            hour: 'numeric', minute: '2-digit'
+        });
     }
 
     function setupSystemTabs() {
@@ -649,12 +667,13 @@ async function startCameraProcess() {
 window.refreshFriendster = function() {
     const ieWindow = document.getElementById('ieWindow');
     if (ieWindow) {
-        ieWindow.querySelector('.ie-content').innerHTML = 
-            '<div class="loading-animation">Loading Friendster...</div>';
+        const contentDiv = ieWindow.querySelector('.ie-content');
+        contentDiv.innerHTML = '<div class="loading-animation">Loading MySpace...</div>';
         setTimeout(() => {
             const friendsterContent = document.getElementById('friendsterContent');
             if (friendsterContent) {
-                ieWindow.querySelector('.ie-content').innerHTML = friendsterContent.innerHTML;
+                contentDiv.innerHTML = friendsterContent.innerHTML;
+                if (typeof window.renderLastUpdated === 'function') window.renderLastUpdated(contentDiv);
             }
         }, 1500);
     }

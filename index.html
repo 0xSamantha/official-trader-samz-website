@@ -46,6 +46,14 @@
             <img src="icons/internetexplorer.png" alt="Social">
             <span>Social</span>
         </a>
+        <a href="#" class="icon" data-window="music">
+            <img src="icons/music library.png" alt="Music">
+            <span>Music</span>
+        </a>
+        <a href="#" class="icon" data-window="player">
+            <img src="icons/music player.png" alt="Player">
+            <span>Player</span>
+        </a>
         <a href="#" class="icon" data-window="services">
             <img src="icons/services.png" alt="Services">
             <span>Services</span>
@@ -354,6 +362,36 @@
         </div>
     </div>
 
+    <div id="musicWindow" class="window">
+        <div class="title-bar">
+            <div class="title-bar-text">Music</div>
+            <div class="title-bar-controls">
+                <button class="min-btn" type="button" aria-label="Minimize"></button>
+                <button class="max-btn" type="button" aria-label="Maximize"></button>
+                <button class="close-btn" type="button" aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h2>Music</h2>
+            <br>
+            <p>Coming Soon...</p>
+        </div>
+    </div>
+    <div id="playerWindow" class="window">
+        <div class="title-bar">
+            <div class="title-bar-text">Player</div>
+            <div class="title-bar-controls">
+                <button class="min-btn" type="button" aria-label="Minimize"></button>
+                <button class="max-btn" type="button" aria-label="Maximize"></button>
+                <button class="close-btn" type="button" aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-content">
+            <h2>Player</h2>
+            <br>
+            <p>Coming Soon...</p>
+        </div>
+    </div>
     <div id="servicesWindow" class="window">
         <div class="title-bar">
             <div class="title-bar-text">Freelance Services</div>
@@ -518,6 +556,8 @@
         <a href="#" data-window="projects"><img src="icons/files.png" alt="Projects"><span>Projects</span></a>
         <a href="#" data-window="learning"><img src="icons/learningcode.png" alt="Learning"><span>Learning</span></a>
         <a href="#" data-window="social"><img src="icons/internetexplorer.png" alt="Social"><span>Social</span></a>
+        <a href="#" data-window="music"><img src="icons/music library.png" alt="Music"><span>Music</span></a>
+        <a href="#" data-window="player"><img src="icons/music player.png" alt="Player"><span>Player</span></a>
         <a href="#" data-window="services"><img src="icons/services.png" alt="Services"><span>Services</span></a>
         <a href="#" data-window="referrals"><img src="icons/globe.png" alt="Referral Links"><span>Referral/Other Links</span></a>
         <a href="#" data-window="crypto"><img src="icons/chart.png" alt="Crypto Prices"><span>Crypto</span></a>
@@ -551,7 +591,7 @@
     <div id="ieWindowTemplate" style="display: none;">
         <div class="window ie-window">
             <div class="title-bar">
-            <div class="title-bar-text">Internet Explorer - Friendster</div>
+            <div class="title-bar-text">Internet Explorer - MySpace</div>
             <div class="title-bar-controls">
                 <button class="min-btn" type="button" aria-label="Minimize"></button>
                 <button class="max-btn" type="button" aria-label="Maximize"></button>
@@ -563,7 +603,7 @@
             <button class="ie-btn" disabled>Forward</button>
             <button class="ie-btn" onclick="refreshFriendster()">Refresh</button>
             <button class="ie-btn" onclick="refreshFriendster()">Home</button>
-            <input type="text" class="ie-address-bar" value="http://www.friendster.com/samanthac" readonly>
+            <input type="text" class="ie-address-bar" value="http://www.myspace.com/tradersamz" readonly>
             <button class="ie-btn" onclick="refreshFriendster()">Go</button>
           </div>
           <div class="window-content ie-content">
@@ -574,86 +614,85 @@
       
       
     <!-- Friendster Profile Content -->
+    <!-- ============================================================
+         MySpace-style "Current Favorites" page.
+         To update: edit the <li> items in each list below, then set
+         data-updated on #favoritesPage to the moment you updated it.
+         Format: YYYY-MM-DDTHH:MM:SS-07:00
+           - the -07:00 is YOUR timezone offset (Pacific):
+             use -07:00 in summer (PDT), -08:00 in winter (PST).
+         Each visitor sees this time converted to THEIR own timezone,
+         just like the desktop clock.
+         ============================================================ -->
     <div id="friendsterContent" style="display: none;">
-        <div class="friendster-profile">
-            <div class="friendster-container">
-                <div class="friendster-header">Friendster</div>
-                
+        <div class="myspace-profile">
+            <div id="favoritesPage" class="myspace-container" data-updated="2026-06-22T22:37:00-07:00">
+                <div class="myspace-header">✩ Samantha's Current Favorites ✩</div>
+
                 <div class="profile-header">
                     <img src="icons/sam.JPG" alt="Samantha" class="profile-pic">
-                    <div class="profile-name">Samantha C.</div>
-                </div>
-
-                <div class="profile-info">
-                    <p><strong>Status:</strong> Coding, gaming, and chilling with my dogs ⚡💻</p>
-                    <p><strong>Location:</strong> SoCal, CA</p>
-                    <p><strong>Occupation:</strong> Software Developer</p>
-                    <p><strong>Last Login:</strong> 10/28/2024</p>
-                </div>
-
-                <div class="profile-section">
-                    <div class="section-title">About Me</div>
-                    <p>Hiii. I'm Samantha, a mostly self-taught software developer. I went to school for it for a couple years, thought I wanted to be a doctor instead - then I found crypto and fell in love with all the technological potential in the field and then I fell even more in love on the positive potential for AI. I look forward to and hope to be a part of blockchain technologies' real mainstream adoption - as a transparent, decentralized ledger to record anything from healthcare coding to tracking system-wide store credit. To be a part of something that has the potential to change the foundation of our modern society, as well as be a good community member to everyone around me, is honestly my ultimate goal in life. That sounds kinda silly and unimportant now, but just wait!.. </p>
-                </div>
-
-                <div class="profile-section">
-                    <div class="section-title">Other Interests</div>
-                    <ul>
-                        <li>Crypto</li>
-                        <li>Web3 Smart Contracts & Programs</li>
-                        <li>Video Games (Bethesda, I love you!!!!)</li>
-                        <li>Photography</li>
-                        <li>Cooking</li>
-                        <li>Guitar</li>
-                        <li>Vintage Music</li>
-                        <li>Architecture/Art History</li>
-                        <li>Hanging out with my dogs (or any animals really, lol)</li>
-                        <li>Learning anything new!</li>
-                        <li>Machine Learning/AI</li>
-                    </ul>
-                </div>
-<!-- 
-                <div class="profile-section">
-                    <div class="section-title">Friends (42)</div>
-                    <div class="friend-grid">
-                        <div class="friend">
-                            <img src="/api/placeholder/60/60" alt="Ryan">
-                            Ryan
-                        </div>
-                        <div class="friend">
-                            <img src="/api/placeholder/60/60" alt="Sandra">
-                            Sandra
-                        </div>
-                        <div class="friend">
-                            <img src="/api/placeholder/60/60" alt="RJ">
-                            RJ
-                        </div>
-                        <div class="friend">
-                            <img src="/api/placeholder/60/60" alt="Vitalik">
-                            Vitalik
-                        </div>
-                        <div class="friend">
-                            <img src="/api/placeholder/60/60" alt="Delaney">
-                            Delaney
-                        </div>
-                        <div class="friend">
-                            <img src="/api/placeholder/60/60" alt="Wolf">
-                            Wolf
-                        </div>
-                        <div class="friend">
-                            <img src="/api/placeholder/60/60" alt="Iryna">
-                            Iryna
-                        </div>
-                        <div class="friend">
-                            <img src="/api/placeholder/60/60" alt="Anakin">
-                            Anakin
-                        </div>
+                    <div>
+                        <div class="profile-name">♡ Samantha C. ♡</div>
+                        <div class="profile-mood">mood: tired  &amp; vibing ⚡✨</div>
                     </div>
                 </div>
+
+                <div class="ms-section">
+                    <div class="ms-section-title">★ Top 5 Bands/Artists ★</div>
+                    <ol class="ms-list">
+                        <li>Mild High Club</li>
+                        <li>Mac Demarco</li>
+                        <li>Amy Winehouse</li>
+                        <li>Misfits</li>
+                        <li>The Walters</li>
+                    </ol>
+                </div>
+
+                <div class="ms-section">
+                    <div class="ms-section-title">♫ Top 5 Songs ♫</div>
+                    <ol class="ms-list">
+                        <li>Subterranean Homesick Blues (Bob Dylan)</li>
+                        <li>5 A.M. (The Millenium)</li>
+                        <li>Fantasy (Earth, Wind & Fire)</li>
+                        <li>I Never Told You What I Do For a Living (My Chemical Romance)</li>
+                        <li>Buddy Holly (Weezer)</li>
+                    </ol>
+                </div>
+
+                <div class="ms-section">
+                    <div class="ms-section-title">✿ Current Cravings ✿</div>
+                    <ul class="ms-list">
+                        <li>Carneasada Fries</li>
+                        <li>Chocolate Cold Foam</li>
+                        <li>McDonald's Hashbrown</li>
+                    </ul>
+                </div>
+
+                <div class="ms-section">
+                    <div class="ms-section-title">✮ Top 5 Games ✮</div>
+                    <ol class="ms-list">
+                        <li>Dead by Daylight</li>
+                        <li>Fortnite</li>
+                        <li>Cities: Skylines</li>
+                        <li>Star Wars: The Old Republic</li>
+                        <li>SMITE</li>
+                    </ol>
+                </div>
+
+                <div class="ms-section">
+                    <div class="ms-section-title">❀ Current Hobbies &amp; Interests ❀</div>
+                    <ul class="ms-list">
+                        <li>Bass &amp; guitar</li>
+                        <li>Fishing</li>
+                        <li>Puzzles</li>
+                    </ul>
+                </div>
+
+                <div class="ms-updated">last updated: <span class="last-updated-time">…</span></div>
             </div>
         </div>
     </div>
---->
+
     <div id="socialPlatformContainer"></div>
 
     <!-- Scripts -->

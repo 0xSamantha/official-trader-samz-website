@@ -1077,3 +1077,110 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
         height: 370px !important;
     }
 }
+
+/* ============================================================
+   MySpace-style "Current Favorites" page (pink & sparkly)
+   ============================================================ */
+.myspace-profile {
+    padding: 18px;
+    min-height: 100%;
+    font-family: 'VT323', monospace;
+    color: #6d2060;
+    background-color: #ffd9ec;
+    background-image:
+        radial-gradient(circle at 12% 18%, #ffffff 0 1.5px, transparent 2px),
+        radial-gradient(circle at 78% 8%,  #ffffff 0 1.5px, transparent 2px),
+        radial-gradient(circle at 30% 62%, #fff6fb 0 1.5px, transparent 2px),
+        radial-gradient(circle at 88% 48%, #ffffff 0 1.5px, transparent 2px),
+        radial-gradient(circle at 55% 88%, #fff6fb 0 1.5px, transparent 2px),
+        radial-gradient(circle at 8% 90%,  #ffffff 0 1.5px, transparent 2px),
+        linear-gradient(160deg, #ffc1e3 0%, #ffd9ec 45%, #ffe7f5 100%);
+}
+
+.myspace-container {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.myspace-header {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: #ff2d92;
+    padding: 10px;
+    margin-bottom: 18px;
+    background: linear-gradient(90deg, #ff8fcf, #ffc8e8, #ff8fcf);
+    border: 3px double #ff2d92;
+    border-radius: 12px;
+    text-shadow: 1px 1px 0 #fff, 0 0 6px #ffb3de;
+}
+
+.myspace-profile .profile-header {
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.myspace-profile .profile-pic {
+    width: 80px;
+    height: 80px;
+    border: 3px solid #ff2d92;
+    box-shadow: 0 0 10px #ff8fcf;
+    margin-right: 0;
+}
+
+.myspace-profile .profile-name {
+    color: #ff2d92;
+    font-size: 26px;
+    text-shadow: 1px 1px 0 #fff;
+}
+
+.profile-mood {
+    font-size: 18px;
+    color: #a83a8e;
+}
+
+.ms-section {
+    background: #fff0f8;
+    border: 2px solid #ff8fcf;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 0 0 2px #ffe2f2, 2px 2px 6px rgba(255, 45, 146, 0.2);
+}
+
+.ms-section-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff2d92;
+    text-align: center;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px dashed #ff8fcf;
+    text-shadow: 1px 1px 0 #fff;
+}
+
+.ms-list {
+    margin: 0;
+    padding-left: 26px;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #6d2060;
+}
+
+.ms-list li {
+    margin-bottom: 4px;
+}
+
+.ms-list li::marker {
+    color: #ff2d92;
+}
+
+.ms-updated {
+    text-align: center;
+    font-size: 13px;
+    color: #b85aa0;
+    margin-top: 18px;
+    font-style: italic;
+}
