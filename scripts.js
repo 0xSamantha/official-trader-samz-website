@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const window = e.target.closest('.window');
         if (window) {
             window.style.zIndex = getHighestZIndex() + 1;
+            setActiveButton(window);
         }
     }
 
@@ -36,6 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const window = closeButton.closest('.window');
         if (window) {
             window.style.display = 'none';
+            window.classList.remove('maximized');
+            const btn = getTaskbarButton(window);
+            if (btn) btn.remove();
         }
     }
 
@@ -136,6 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 gameWindow.style.left = '50%';
                 gameWindow.style.transform = 'translate(-50%, -50%)';
             }
+            ensureTaskbarButton(gameWindow);
+            setActiveButton(gameWindow);
         }
     }
 
@@ -161,6 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         ieWindow.style.display = 'block';
         ieWindow.style.zIndex = getHighestZIndex() + 1;
+        ensureTaskbarButton(ieWindow);
+        setActiveButton(ieWindow);
     }
 
     function createIEWindow() {
@@ -188,6 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (windowId === 'about') {
                 setupSystemTabs();
             }
+            ensureTaskbarButton(window);
+            setActiveButton(window);
         }
     }
 
@@ -321,6 +331,118 @@ document.addEventListener('DOMContentLoaded', () => {
         );
     }
 
+    // ---- Window manager: minimize / maximize / restore + taskbar ----
+    const dock = document.querySelector('.dock');
+    const prevGeometry = new WeakMap();
+
+    function getWindowTitle(win) {
+        const t = win.querySelector('.title-bar-text');
+        return t ? t.textContent.trim() : 'Window';
+    }
+
+    function getTaskbarButton(win) {
+        if (!dock || !win.id) return null;
+        return dock.querySelector(`.taskbar-button[data-window-id="${win.id}"]`);
+    }
+
+    function setActiveButton(win) {
+        if (!dock) return;
+        dock.querySelectorAll('.taskbar-button').forEach(b => b.classList.remove('active'));
+        const btn = getTaskbarButton(win);
+        if (btn) btn.classList.add('active');
+    }
+
+    function ensureTaskbarButton(win) {
+        if (!dock || !win.id) return null;
+        let btn = getTaskbarButton(win);
+        if (!btn) {
+            btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'taskbar-button';
+            btn.setAttribute('data-window-id', win.id);
+            const label = document.createElement('span');
+            label.textContent = getWindowTitle(win);
+            btn.appendChild(label);
+            btn.addEventListener('click', () => toggleFromTaskbar(win));
+            dock.appendChild(btn);
+        }
+        return btn;
+    }
+
+    function isWindowHidden(win) {
+        return win.style.display === 'none' || getComputedStyle(win).display === 'none';
+    }
+
+    function focusWindow(win) {
+        win.style.display = win.classList.contains('maximized') ? 'flex' : 'block';
+        win.style.zIndex = getHighestZIndex() + 1;
+        setActiveButton(win);
+    }
+
+    function minimizeWindow(win) {
+        win.style.display = 'none';
+        const btn = getTaskbarButton(win);
+        if (btn) btn.classList.remove('active');
+    }
+
+    function toggleFromTaskbar(win) {
+        const btn = getTaskbarButton(win);
+        if (isWindowHidden(win)) {
+            focusWindow(win);
+        } else if (btn && btn.classList.contains('active')) {
+            // clicking the active window's button minimizes it (Windows behavior)
+            minimizeWindow(win);
+        } else {
+            focusWindow(win);
+        }
+    }
+
+    function maximizeWindow(win) {
+        if (win.classList.contains('maximized')) {
+            win.classList.remove('maximized');
+            const geo = prevGeometry.get(win);
+            if (geo) {
+                win.style.left = geo.left;
+                win.style.top = geo.top;
+                win.style.width = geo.width;
+                win.style.height = geo.height;
+                win.style.transform = geo.transform;
+            }
+            win.style.display = 'block';
+        } else {
+            prevGeometry.set(win, {
+                left: win.style.left,
+                top: win.style.top,
+                width: win.style.width,
+                height: win.style.height,
+                transform: win.style.transform
+            });
+            win.classList.add('maximized');
+            win.style.display = 'flex';
+        }
+        win.style.zIndex = getHighestZIndex() + 1;
+        setActiveButton(win);
+    }
+
+    function handleMinMaxButton(e) {
+        const minBtn = e.target.closest('.min-btn');
+        const maxBtn = e.target.closest('.max-btn');
+        if (!minBtn && !maxBtn) return;
+        const win = (minBtn || maxBtn).closest('.window');
+        if (!win) return;
+        e.preventDefault();
+        e.stopPropagation();
+        if (minBtn) minimizeWindow(win);
+        else maximizeWindow(win);
+    }
+
+    // expose registration so out-of-closure open functions (e.g. crypto) can use it
+    window.wmRegister = function (win) {
+        if (!win) return;
+        ensureTaskbarButton(win);
+        focusWindow(win);
+    };
+
     function setupSubWindowListeners() {
         // opening subwindows
         document.querySelectorAll('.icon[data-subwindow]').forEach(icon => {
@@ -386,6 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', handleStartMenu);
     document.addEventListener('click', handleWindowClick);
     document.addEventListener('click', handleCloseButton);
+    document.addEventListener('click', handleMinMaxButton);
     
     document.addEventListener('mousedown', startDragging);
     document.addEventListener('touchstart', startDragging);
@@ -546,8 +669,10 @@ function openCryptoWindow() {
     const cryptoWindow = document.getElementById('cryptoWindow');
     if (cryptoWindow) {
         cryptoWindow.style.display = 'block';
-        cryptoWindow.style.zIndex = getHighestZIndex() + 1;
-        fetchCryptoPrices(); 
+        if (typeof window.wmRegister === 'function') {
+            window.wmRegister(cryptoWindow);
+        }
+        fetchCryptoPrices();
     }
 }
 

@@ -102,8 +102,27 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
     box-shadow: inset -2px -2px #808080, inset 2px 2px #dfdfdf;
     overflow: hidden;
     transition: none !important;
-    max-height: calc(100vh - 80px); 
-    margin-bottom: 40px; 
+    max-height: calc(100vh - 80px);
+    margin-bottom: 40px;
+}
+
+/* Maximized window fills the desktop, above the taskbar */
+.window.maximized {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: calc(100vh - 40px) !important;
+    max-height: calc(100vh - 40px) !important;
+    margin-bottom: 0 !important;
+    transform: none !important;
+    border-radius: 0;
+    flex-direction: column;
+}
+
+.window.maximized > .window-content,
+.window.maximized > .ie-content {
+    flex: 1 1 auto;
+    overflow-y: auto;
 }
 
   .title-bar {
@@ -533,6 +552,50 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
     font-size: 16px;
     min-width: 85px;
     text-align: center;
+}
+
+/* Taskbar buttons for open windows (Windows-style) */
+.dock {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 4px;
+    margin: 0 6px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    min-width: 0;
+}
+
+.taskbar-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 0 1 160px;
+    min-width: 90px;
+    max-width: 160px;
+    height: 28px;
+    padding: 2px 8px;
+    background-color: var(--window-bg);
+    border: 2px outset #ffffff;
+    border-radius: 0;
+    font-family: 'VT323', monospace;
+    font-size: 15px;
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.taskbar-button span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.taskbar-button.active {
+    border-style: inset;
+    background-color: #dcdcdc;
+    font-weight: bold;
 }
 
 /* Start Menu Styles */
@@ -1087,14 +1150,9 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
     font-family: 'VT323', monospace;
     color: #6d2060;
     background-color: #ffd9ec;
-    background-image:
-        radial-gradient(circle at 12% 18%, #ffffff 0 1.5px, transparent 2px),
-        radial-gradient(circle at 78% 8%,  #ffffff 0 1.5px, transparent 2px),
-        radial-gradient(circle at 30% 62%, #fff6fb 0 1.5px, transparent 2px),
-        radial-gradient(circle at 88% 48%, #ffffff 0 1.5px, transparent 2px),
-        radial-gradient(circle at 55% 88%, #fff6fb 0 1.5px, transparent 2px),
-        radial-gradient(circle at 8% 90%,  #ffffff 0 1.5px, transparent 2px),
-        linear-gradient(160deg, #ffc1e3 0%, #ffd9ec 45%, #ffe7f5 100%);
+    background-image: url("https://www.fillster.com/images/backgrounds/2w.gif");
+    background-repeat: repeat;
+    background-attachment: fixed;
 }
 
 .myspace-container {
