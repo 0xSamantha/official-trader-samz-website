@@ -61,10 +61,16 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
     height: 100px;
 }
 
-.icon img {
+.icon img,
+.icon .blank-icon {
     width: 48px;
     height: 48px;
     margin-bottom: 5px;
+}
+
+.icon .blank-icon {
+    display: block;
+    flex-shrink: 0;
 }
 
 .icon span {
@@ -636,10 +642,16 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
     color: white;
 }
 
-.start-menu img {
+.start-menu img,
+.start-menu .blank-icon {
     width: 24px;
     height: 24px;
     margin-right: 10px;
+}
+
+.start-menu .blank-icon {
+    display: block;
+    flex-shrink: 0;
 }
 
 .start-menu-footer {
