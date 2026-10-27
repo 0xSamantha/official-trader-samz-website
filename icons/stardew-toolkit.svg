@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" shape-rendering="crispEdges">
+  <title>Pixel farming pickaxe</title>
+  <path fill="#492c20" d="M15 5h4v5h-3v3h-3v3h-3v3H7v3H3v-4h3v-3h3v-3h3V9h3z"/>
+  <path fill="#b97538" d="M16 8h2v2h-2v3h-3v3h-3v3H7v2H4v-2h3v-3h3v-3h3v-3h3z"/>
+  <path fill="#e9ae61" d="M4 19h2v1H4zm3-3h2v2H7zm3-3h2v2h-2zm3-3h2v2h-2zm3-2h1v1h-1z"/>
+  <path fill="#283840" d="M8 2h9v2h3v3h2v6h-3V9h-3V7h-5V5H6V3h2z"/>
+  <path fill="#8cbdc9" d="M8 3h8v2h3v3h2v3h-1V8h-4V6h-5V4H8z"/>
+  <path fill="#d5edf1" d="M8 3h8v1H8zm8 2h2v1h-2zm3 2h1v1h-1z"/>
+</svg>
