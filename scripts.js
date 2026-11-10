@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // dragging functionality
     function startDragging(e) {
-        if (!e.target.closest('.title-bar')) return;
+        if (!e.target.closest('.title-bar') || e.target.closest('button') || document.documentElement.clientWidth <= 768) return;
         
         isDragging = true;
         currentWindow = e.target.closest('.window');
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function openRegularWindow(windowId) {
         const window = document.getElementById(windowId + 'Window');
         if (window) {
-            window.style.cssText = '';
+            if (getComputedStyle(window).display !== 'none') { focusWindow(window); return; }
             window.style.display = 'block';
             window.style.zIndex = getHighestZIndex() + 1;
             
@@ -198,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             ensureTaskbarButton(window);
             setActiveButton(window);
+            window.querySelector('.close-btn')?.focus({preventScroll: true});
         }
     }
 
@@ -526,7 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const clockInterval = setInterval(updateClock, 1000);
 
     // window opening from icons and start menu
-    document.querySelectorAll('.icon[data-window], .start-menu a[data-window]').forEach(item => {
+    document.querySelectorAll('[data-window]').forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
             const windowId = item.getAttribute('data-window');

@@ -5,11 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:url" content="https://tradersamz.lol">
     <meta property="og:type" content="website">
-    <meta name="description" content="Samantha's personal website showcasing her projects, skills, and interests.">
-    <meta name="keywords" content="Samantha, software developer, web3, projects, skills, interests">
+    <meta name="description" content="Samantha builds interactive applications, reusable toolkits, and gesture-controlled games and instruments.">
+    <meta name="keywords" content="Samantha, software developer, interactive applications, toolkits, computer vision">
     <meta name="author" content="Samantha C.">
     <meta property="og:title" content="Samantha's Page">
-    <!--- add image meta description */ -->
+    <meta property="og:description" content="Samantha builds interactive applications, reusable toolkits, and gesture-controlled games and instruments.">
+    <meta property="og:image" content="https://tradersamz.lol/icons/sam.JPG">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:alt" content="Samantha’s pixel-art avatar with pink hair against a teal background">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Samantha's Page">
+    <meta name="twitter:description" content="Samantha builds interactive applications, reusable toolkits, and gesture-controlled games and instruments.">
+    <meta name="twitter:image" content="https://tradersamz.lol/icons/sam.JPG">
+    <meta name="twitter:image:alt" content="Samantha’s pixel-art avatar with pink hair against a teal background">
     <title>Samantha's Page</title>
     <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
     <link rel="stylesheet" href="styles.css">
@@ -21,7 +29,7 @@
     <div id="windows95Background" class="os-background active"></div>
 
     <!-- Desktop Icons -->
-    <div class="desktop">
+    <div class="desktop"><a href="#" data-window="hi" class="icon"><img src="icons/hello.svg" alt=""><span>Say Hi!</span></a><a href="https://0xsamantha.github.io/audio-visualizer/" target="_blank" rel="noopener" class="icon"><img src="icons/visualizer.svg" alt=""><span>TS Visualizer</span></a>
         <a href="#" class="icon" data-window="about">
             <img src="icons/mycomputer.png" alt="About Me">
             <span>About Me</span>
@@ -128,7 +136,7 @@
                     <p class="indent">Samantha C.</p>
                     <p class="indent">Software Developer</p>
                     <p class="indent">Based in SoCal, CA</p>
-                    <p class="indent">Site personally built to use as much HTML/CSS and Vanilla JavaScript as possible, plus 98.css.</p>
+                    <p class="indent">I build interactive software: browser toolkits, hand-controlled games, and creative instruments. This desktop is built with HTML, CSS, vanilla JavaScript, and 98.css.</p>
                   </div>
                   <br>
                   <br>
@@ -136,8 +144,8 @@
                   <br>
                   <div class="info-section">
                     <p class="section-title">Status:</p>
-                    <p class="indent">Available for Projects</p>
-                    <p class="indent">Registered Developer</p>
+                    <p class="indent">Let’s talk about software</p>
+                    <p class="indent">Employment · collaborations · creative tools</p>
                   </div>
                 </div>
               </div>
@@ -241,7 +249,7 @@
                         <summary><strong style="color: purple">Web3 Development</strong></summary>
                         <ul>
                             <li>NFT Landing Pages</li>
-                            <li>Memecoin Websites</li>
+                            <li>Coin Websites</li>
                             <li>Wallet Integration</li>
                             <li>Minting Interfaces</li>
                         </ul>
@@ -265,7 +273,7 @@
                                     <li>Mint Functions</li>
                                 </ul>
                             </li>
-                            <li><strong>Memecoin Sites</strong>
+                            <li><strong>Coin Sites</strong>
                                 <ul>
                                     <li>Token Information</li>
                                     <li>Community Sections</li>
@@ -291,39 +299,14 @@
             <div class="window-body">
               <div class="info-section">
                 <p class="section-title"><strong>Recent Projects:</strong></p>
-                <p class="indent">LP Burn Tracker</p>
-                <p class="indent">NFT/Memecoin Home Page</p>
-                <p class="indent">Bitcoin Price Predictor</p>
-                <p class="indent">Disneyland Trip Checklist</p>
+                <p class="indent">Stardew Toolkit — farm planning in the browser.</p><p class="indent">Fieldkit — one reusable checklist engine for multiple games.</p><p class="indent">Dino Gesture Game — hand input connected to a playable runner.</p><p class="indent">AIR &amp; Digital Midi Keyboard — gestures mapped to sound and MIDI.</p><p class="indent">I integrate MediaPipe hand landmarks and OpenCV camera processing, then build the interaction logic and interface around them. These foundations are credited in the projects; I do not claim to have created their underlying models.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div id="projectsWindow" class="window">
-        <div class="title-bar">
-            <div class="title-bar-text">Projects</div>
-            <div class="title-bar-controls">
-                <button class="min-btn" type="button" aria-label="Minimize"></button>
-                <button class="max-btn" type="button" aria-label="Maximize"></button>
-                <button class="close-btn" type="button" aria-label="Close"></button>
-            </div>
-        </div>
-        <div class="window-content">
-            <!-- Project content can go here -->
-            <div class="project-grid">
-                <div class="project-item">
-                    <h3>Coming Soon!</h3>
-                    <p>Deciding which ones I want to showcase..</p>
-                    <!-- <button onclick="openWindow('game')">Launch Game</button> -->
-                </div>
-                <!-- Add other projects here -->
-            </div>
-        </div>
-    </div>
-
-    <div id="learningWindow" class="window">
+<section id="projectsWindow" class="window portfolio-window" role="dialog" aria-label="Projects"><div class="title-bar"><div class="title-bar-text">Projects</div><div class="title-bar-controls"><button class="min-btn" type="button" aria-label="Minimize"></button><button class="max-btn" type="button" aria-label="Maximize"></button><button class="close-btn" type="button" aria-label="Close"></button></div></div><div class="window-content"><p>Choose how you’d like to explore my work.</p><div class="project-folders"><button data-window="readyProjects"><img src="icons/files.png" alt="">User-Ready Projects<small>Open and try in your browser</small></button><button data-window="installProjects"><img src="icons/files.png" alt="">Installable Projects<small>Source, dependencies, and local setup</small></button></div></div></section><section id="readyProjectsWindow" class="window portfolio-window" role="dialog" aria-label="User-Ready Projects"><div class="title-bar"><div class="title-bar-text">User-Ready Projects</div><div class="title-bar-controls"><button class="min-btn" type="button" aria-label="Minimize"></button><button class="max-btn" type="button" aria-label="Maximize"></button><button class="close-btn" type="button" aria-label="Close"></button></div></div><div class="window-content"><button data-window="projects">← Projects</button><article class="project-card"><img src="icons/dbd-toolkit.png" alt=""><div><h3>DBD Toolkit</h3><p>Explore my browser toolkit for Dead by Daylight.</p><a href="https://dbdtoolkit.xyz" target="_blank" rel="noopener">Open Project</a></div></article><article class="project-card"><img src="icons/stardew-toolkit.svg" alt=""><div><h3>Stardew Toolkit</h3><p>Plan crop profits, browse selected gifts, and track starter checklists. Farm profiles save on your device.</p><a href="https://0xsamantha.github.io/stardew-valley-toolkit/" target="_blank" rel="noopener">Open Project</a></div></article><article class="project-card"><img src="icons/visualizer.svg" alt=""><div><h3>TS Visualizer</h3><p>Explore six visual styles with a demo signal, your own audio file, or live audio input.</p><p class="requirements">Microphone permission only for live input; opens in a new tab.</p><a href="https://0xsamantha.github.io/audio-visualizer/" target="_blank" rel="noopener">Open Project</a></div></article><article class="project-card"><img src="icons/videogames.png" alt=""><div><h3>Dragon Slayer</h3><p>Play the keyboard-driven adventure built into this desktop.</p><button data-window="game">Open Project</button></div></article></div></section><section id="installProjectsWindow" class="window portfolio-window" role="dialog" aria-label="Installable Projects"><div class="title-bar"><div class="title-bar-text">Installable Projects</div><div class="title-bar-controls"><button class="min-btn" type="button" aria-label="Minimize"></button><button class="max-btn" type="button" aria-label="Maximize"></button><button class="close-btn" type="button" aria-label="Close"></button></div></div><div class="window-content"><button data-window="projects">← Projects</button><article class="project-card"><img src="icons/terminal.png" alt=""><div><h3>Fieldkit</h3><p>Reuse a dependency-free checklist engine with shared search, filters, themes, and per-game progress. Add a dataset to build another game toolkit.</p><p class="requirements">Download the source and serve dist/ with a static server.</p><a href="https://github.com/0xSamantha/toolkit-builder#readme" target="_blank" rel="noopener">View Setup</a></div></article><article class="project-card"><img src="icons/terminal.png" alt=""><div><h3>Dino Gesture Game</h3><p>Play a local runner with open-hand/fist transitions and timed gestures. Builds on MediaPipe landmarks and the credited hand-gesture sample.</p><p class="requirements">Python 3.11, dependencies, and a webcam for gesture control.</p><a href="https://github.com/0xSamantha/dino-gesture-game#readme" target="_blank" rel="noopener">View Setup</a></div></article><article class="project-card"><img src="icons/terminal.png" alt=""><div><h3>Digital Midi Keyboard</h3><p>Play two octaves and percussion pads with pinches, a mouse, or keys. Send notes to a DAW or hear the built-in synth preview.</p><p class="requirements">Python 3.11 recommended; macOS 13+ for pinned dependencies. Webcam optional; a DAW/instrument is needed for external MIDI playback.</p><a href="https://github.com/0xSamantha/digital-midi#readme" target="_blank" rel="noopener">View Setup</a></div></article><article class="project-card"><img src="icons/terminal.png" alt=""><div><h3>AIR</h3><p>Shape synthesized pitch and timbre with your hand. My gesture mappings, smoothing, synthesis, and reverb build on MediaPipe and OpenCV.</p><p class="requirements">Python 3.12, dependencies, webcam, and audio output.</p><a href="https://github.com/0xSamantha/gc-digital-instrument#readme" target="_blank" rel="noopener">View Setup</a></div></article></div></section><section id="hiWindow" class="window portfolio-window" role="dialog" aria-label="Say Hi!"><div class="title-bar"><div class="title-bar-text">Say Hi!</div><div class="title-bar-controls"><button class="min-btn" type="button" aria-label="Minimize"></button><button class="max-btn" type="button" aria-label="Maximize"></button><button class="close-btn" type="button" aria-label="Close"></button></div></div><div class="window-content"><p>Leave a little hello.</p><p class="hi-total"><output id="hiTotal" aria-label="Shared hello total">—</output></p><button id="hiButton" disabled>Say Hi!</button><button id="hiRefresh">Refresh total</button><p id="hiStatus" role="status" aria-live="polite">Connecting to the shared counter…</p></div></section>    <div id="learningWindow" class="window">
         <div class="title-bar">
             <div class="title-bar-text">Learning Resources</div>
             <div class="title-bar-controls">
@@ -414,8 +397,8 @@
             <br>
             <ul>
                 <li>Mobile App Development</li>
-                <li>Memecoin/NFT Pages</li>
-                <li>Memecoins: Token & Market Creation, LP Burning, LP Creation, Social Medias, DexScreener</li>
+                <li>Coin/NFT Pages</li>
+                <li>Coins: Token & Market Creation, LP Burning, LP Creation, Social Medias, DexScreener</li>
                 <li>Ethereum Smart Contracts & Solana Programs</li>
                 <li>Being friends</li>
             </ul>
@@ -427,7 +410,7 @@
         <div class="title-bar">
             <div class="title-bar-text">Referral/Other Links</div>
             <div class="title-bar-controls">
-                <button class="min-btn type="button" aria-label="Minimize"></button>
+                <button class="min-btn" type="button" aria-label="Minimize"></button>
                 <button class="max-btn" type="button" aria-label="Maximize"></button>
                 <button class="close-btn" type="button" aria-label="Close"></button>
             </div>
@@ -452,7 +435,7 @@
                 Crypto Prices
             </div>
             <div class="title-bar-controls">
-                <button class="min-btn type="button" aria-label="Minimize"></button>
+                <button class="min-btn" type="button" aria-label="Minimize"></button>
                 <button class="max-btn" type="button" aria-label="Maximize"></button>
                 <button class="close-btn" type="button" aria-label="Close"></button>
             </div>
@@ -469,7 +452,7 @@
         <div class="title-bar">
             <div class="title-bar-text">Dragon Slayer</div>
             <div class="title-bar-controls">
-                <button class="min-btn type="button" aria-label="Minimize"></button>
+                <button class="min-btn" type="button" aria-label="Minimize"></button>
                 <button class="max-btn" type="button" aria-label="Maximize"></button>
                 <button class="close-btn" type="button" aria-label="Close"></button>
             </div>
@@ -507,7 +490,7 @@
             </div>
         </div>
         <div class="window-content">
-            <h2>Get in Touch</h2>
+            <h2>Get in Touch</h2><p>I’d love to hear about employment opportunities, collaborations, and interesting software projects—especially interactive tools, computer vision, and creative applications.</p>
             <div class="contact-info">
             </div>
             <h3>Send a Message</h3>
@@ -557,7 +540,7 @@
         <div id="clock" class="taskbar-clock"></div>
     </div>
 
-    <div id="startMenu" class="start-menu">
+    <div id="startMenu" class="start-menu"><a href="#" data-window="hi"><img src="icons/hello.svg" alt=""><span>Say Hi!</span></a><a href="https://0xsamantha.github.io/audio-visualizer/" target="_blank" rel="noopener"><img src="icons/visualizer.svg" alt=""><span>TS Visualizer</span></a>
         <a href="#" data-window="about"><img src="icons/mycomputer.png" alt="About Me"><span>About Me</span></a>
         <a href="https://twitch.tv/tradersams" target="_blank" rel="noopener"><img src="icons/twitch.png" alt="Twitch"><span>Twitch</span></a>
         <a href="https://github.com/0xSamantha" target="_blank" rel="noopener"><img src="icons/terminal.png" alt="GitHub"><span>GitHub</span></a>
@@ -571,7 +554,7 @@
         <a href="#" data-window="services"><img src="icons/services.png" alt="Services"><span>Services</span></a>
         <a href="#" data-window="referrals"><img src="icons/globe.png" alt="Referral Links"><span>Referral/Other Links</span></a>
         <a href="#" data-window="crypto"><img src="icons/chart.png" alt="Crypto Prices"><span>Crypto</span></a>
-        <a href="#" data-window="dragon slayer"><img src="icons/videogames.png" alt="Dragon Slayer"><span>Dragon Slayer</span></a>
+        <a href="#" data-window="game"><img src="icons/videogames.png" alt="Dragon Slayer"><span>Dragon Slayer</span></a>
         <!--<a href="#" data-window="aiCamera"><img src="icons/camera.png" alt="AI Camera"><span>AI Camera</span></a>-->
         <a href="#" data-window="contact"><img src="icons/contact.png" alt="Contact"><span>Contact</span></a>
         <div class="start-menu-footer">
@@ -709,6 +692,6 @@
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands"></script>
-    <script src="scripts.js"></script>
+    <script src="scripts.js"></script><script src="hello.js"></script>
 </body>
 </html>

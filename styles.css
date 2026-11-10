@@ -1254,3 +1254,59 @@ body, .taskbar, .start-button, .window, .title-bar, .menu-bar, .dock {
     margin-top: 18px;
     font-style: italic;
 }
+
+/* Portfolio readability adjustment — remove this block to restore prior copy. */
+.portfolio-window .window-content, #contactWindow .window-content,
+#aboutWindow .info-text, #aboutWindow #projects .info-section {
+    font-family: Arial, sans-serif; font-size: 14px; font-weight: 400;
+    line-height: 1.5; text-shadow: none;
+}
+.portfolio-window { width: 600px; max-width: calc(100vw - 24px); }
+.portfolio-window .window-content { max-height: calc(80vh - 55px); overflow-y: auto; }
+.project-folders { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
+.project-folders button { padding: 16px; white-space: normal; }
+.project-folders img { display: block; width: 48px; height: 48px; margin: 0 auto 8px; }
+.project-folders small { display: block; margin-top: 8px; }
+.project-card { display: flex; gap: 16px; background: white; border: 2px inset white; padding: 16px; margin-top: 12px; }
+.project-card > img { width: 40px; height: 40px; flex-shrink: 0; }
+.project-card h3 { font: bold 16px Arial, sans-serif; margin-bottom: 6px; }
+.project-card p { margin-bottom: 10px; }
+.project-card .requirements { font-size: 12px; }
+.hi-total { font: 400 52px 'VT323', monospace; margin: 16px 0; }
+#hiWindow { width: 360px; }
+#hiStatus { margin-top: 14px; }
+.start-menu { max-height: calc(100dvh - 50px); overflow-y: auto; }
+a:focus-visible, button:focus-visible { outline: 2px dotted #000080; outline-offset: 3px; }
+@media (max-width: 768px) {
+    .desktop { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); align-content: start; height: calc(100dvh - 70px); padding: 8px; gap: 12px; }
+    body { padding: 8px 8px 48px; }
+    body > .window { min-width: 0 !important; max-width: calc(100vw - 16px) !important; max-height: calc(100dvh - 70px) !important; }
+    body > .window .window-content { max-height: calc(100dvh - 120px) !important; overflow-y: auto; }
+    .project-folders { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+
+/* External project links share the raised desktop-button appearance. */
+.project-card a,
+.project-card button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    min-height: 28px;
+    padding: 4px 12px;
+    border: 0;
+    border-radius: 0;
+    background: silver;
+    color: #000;
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff,
+                inset -2px -2px grey, inset 2px 2px #dfdfdf;
+    font: 400 14px 'VT323', monospace;
+    text-decoration: none;
+    cursor: pointer;
+}
+.project-card a:active,
+.project-card button:active {
+    box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a,
+                inset -2px -2px #dfdfdf, inset 2px 2px grey;
+}
