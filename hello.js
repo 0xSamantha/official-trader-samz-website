@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function refresh() {
         if (busy || reading) return;
         reading = true;
-        try { show(await request('GET')); button.disabled = false; status.textContent = 'A shared hello from everyone who visits.'; }
+        try { show(await request('GET')); button.disabled = false; status.textContent = ''; }
         catch { button.disabled = true; status.textContent = window.SAY_HI_ENDPOINT ? 'Cannot connect to the shared counter. Retrying automatically…' : 'Say Hi! is waiting for its shared database connection.'; }
         finally { reading = false; }
     }
