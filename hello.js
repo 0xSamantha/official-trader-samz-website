@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (busy || reading) return;
         reading = true;
         try { show(await request('GET')); button.disabled = false; status.textContent = 'A shared hello from everyone who visits.'; }
-        catch { button.disabled = true; status.textContent = window.SAY_HI_ENDPOINT ? 'Cannot connect to the shared counter. Refresh total to reconnect.' : 'Say Hi! is waiting for its shared database connection.'; }
+        catch { button.disabled = true; status.textContent = window.SAY_HI_ENDPOINT ? 'Cannot connect to the shared counter. Retrying automatically…' : 'Say Hi! is waiting for its shared database connection.'; }
         finally { reading = false; }
     }
     button.addEventListener('click', async () => {
@@ -29,10 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let confirmed = false;
         busy = true; button.disabled = true; status.textContent = 'Sending your hello…';
         try { show(await request('POST')); confirmed = true; status.textContent = 'Hello received. Thank you!'; }
-        catch (error) { status.textContent = `${error.message} Your hello could not be confirmed. Refresh the total before trying again.`; }
+        catch (error) { status.textContent = `${error.message} Your hello could not be confirmed. Waiting for the next automatic update before trying again.`; }
         finally { busy = false; button.disabled = !confirmed; }
     });
-    document.getElementById('hiRefresh').addEventListener('click', refresh);
     function sync() {
         const next = getComputedStyle(win).display !== 'none' && !document.hidden;
         if (next === visible) return;
