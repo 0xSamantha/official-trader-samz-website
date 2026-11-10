@@ -29,7 +29,7 @@ const baseline=process.env.PERFORMANCE_BASE_REF || 'c1fd7a5927760f8e8e6e8f699c40
   const advance=ms=>{const end=now+ms;while(true){const next=[...tasks].sort((a,b)=>a[1].time-b[1].time)[0];if(!next||next[1].time>end)break;const [key,t]=next;now=t.time;tasks.delete(key);if(t.interval)tasks.set(key,{...t,time:now+t.interval});callbacks++;t.fn();}now=end;};
   advance(60000);const foregroundCallbacks=callbacks;
   hidden=true;d.dispatchEvent(new w.Event('visibilitychange'));callbacks=0;advance(60000);const hiddenCallbacks=callbacks;
-  hidden=false;d.dispatchEvent(new w.Event('visibilitychange'));
+  hidden=false;d.dispatchEvent(new w.Event('visibilitychange')``);
   for(let i=0;i<20;i++){d.querySelector('.desktop [data-window="about"]').click();d.querySelector('#aboutWindow .close-btn').click();}
   d.querySelector('.desktop [data-window="about"]').click();
   const win=d.getElementById('aboutWindow');
