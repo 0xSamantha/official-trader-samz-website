@@ -1,3 +1,5 @@
+> Legacy alternative: the frontend now targets Supabase. Follow `supabase/SETUP.md` for the current setup. This Python service is not connected.
+
 # Shared Say Hi counter
 
 The site currently uses static hosting (CNAME: tradersamz.lol). Static hosting cannot run this API. Nothing has been deployed. The frontend deliberately reports a connection error until `/api/hi` is routed to this service; it never fabricates a local total.

@@ -1,4 +1,4 @@
-// Same-origin persistent service. No local fallback and no automatic POST retry.
+// Shared Supabase service. No local fallback and no automatic POST retry.
 document.addEventListener('DOMContentLoaded', () => {
     const win = document.getElementById('hiWindow');
     const total = document.getElementById('hiTotal');
@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
         total.textContent = latest.toLocaleString();
     };
     async function request(method) {
-        const response = await fetch('/api/hi', {method, cache: 'no-store', headers: method === 'POST' ? {'Content-Type': 'application/json'} : {}, ...(method === 'POST' ? {body: '{}'} : {}), signal: AbortSignal.timeout(10000)});
+        const endpoint = window.SAY_HI_ENDPOINT;
+        if (!endpoint) throw new Error('Say Hi! is not connected yet.');
+        const response = await fetch(endpoint, {method, cache: 'no-store', headers: method === 'POST' ? {'Content-Type': 'application/json'} : {}, ...(method === 'POST' ? {body: '{}'} : {}), signal: AbortSignal.timeout(10000)});
         if (!response.ok) throw new Error(response.status === 429 ? 'Please slow down and try again shortly.' : 'Shared counter unavailable.');
         return (await response.json()).total;
     }
@@ -19,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (busy || reading) return;
         reading = true;
         try { show(await request('GET')); button.disabled = false; status.textContent = 'A shared hello from everyone who visits.'; }
-        catch { button.disabled = true; status.textContent = 'Cannot connect to the shared counter. Refresh total to reconnect.'; }
+        catch { button.disabled = true; status.textContent = window.SAY_HI_ENDPOINT ? 'Cannot connect to the shared counter. Refresh total to reconnect.' : 'Say Hi! is waiting for its shared database connection.'; }
         finally { reading = false; }
     }
     button.addEventListener('click', async () => {

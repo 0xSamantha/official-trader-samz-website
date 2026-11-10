@@ -1,0 +1,4 @@
+# No visitor account is required. Authorization is enforced by the handler
+# and private database permissions, with a shared database rate limit.
+[functions.say-hi]
+verify_jwt = false
