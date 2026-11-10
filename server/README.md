@@ -16,7 +16,7 @@ Route exactly `/api/hi` from the website's HTTPS origin to `127.0.0.1:8001` usin
 
 Storage uses SQLite transactions with BEGIN IMMEDIATE and a server-side `total=total+1`, so simultaneous requests serialize correctly. Only an empty JSON object is accepted; clients cannot set a total or reset it. Strict Origin validation rejects cross-site browser submissions. A persistent 60-click/minute/IP limit allows repeated human clicks; visitors sharing an IP share that allowance. Origin checks do not authenticate bots; use edge rate limits for heavier abuse.
 
-Frontend allows one pending increment at a time, disables during the request, never automatically retries POST, and reports ambiguous network failures without confirming a click. GET refreshes on opening/restoring and every 15 seconds while visible. Total is not an ARIA live region; short status feedback is polite.
+Frontend allows one pending increment at a time, disables during the request, never automatically retries POST, and reports ambiguous network failures without confirming a click. GET refreshes on opening/restoring and 30 seconds after each completed request while visible. Total is not an ARIA live region; short status feedback is polite.
 
 Required owner decision: choose a persistent Python host and same-origin HTTPS proxy, then configure COUNTER_DB, COUNTER_ORIGIN, client IP forwarding, and backups. Local development can proxy /api/hi to this service with origin http://localhost:8000.
 

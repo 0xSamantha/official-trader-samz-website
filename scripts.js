@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDragging = false;
     let currentWindow = null;
     let initialX, initialY, initialLeft, initialTop;
+    let dragFrame = null, dragPosition = null, dragMaxX, dragMaxY;
 
     // start menu handling
     function handleStartMenu(e) {
@@ -63,6 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         initialLeft = currentWindow.offsetLeft;
         initialTop = currentWindow.offsetTop;
+        // Read geometry once per gesture, before the frame's style writes.
+        dragMaxX = Math.max(0, viewportWidth - currentWindow.offsetWidth);
+        dragMaxY = Math.max(0, document.documentElement.clientHeight - currentWindow.offsetHeight);
         
         currentWindow.style.zIndex = getHighestZIndex() + 1;
         document.body.style.cursor = 'move';
@@ -81,32 +85,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const newLeft = initialLeft + dx;
         const newTop = initialTop + dy;
         
-        const viewportWidth = document.documentElement.clientWidth;
-        const viewportHeight = document.documentElement.clientHeight;
-        
-        const maxX = viewportWidth - currentWindow.offsetWidth;
-        const maxY = viewportHeight - currentWindow.offsetHeight;
-    
-        // mobile
-        if (viewportWidth <= 768) {
-            // center if dragged too far on mobile
-            if (newLeft < 0 || newLeft > maxX || newTop < 0 || newTop > maxY) {
-                currentWindow.style.left = '50%';
-                currentWindow.style.top = '50%';
-                currentWindow.style.transform = 'translate(-50%, -50%)';
-            } else {
-                currentWindow.style.transform = 'none';
-                currentWindow.style.left = `${newLeft}px`;
-                currentWindow.style.top = `${newTop}px`;
-            }
-        } else {
-            // normal dragging behavior for desktop
-            currentWindow.style.left = `${Math.max(0, Math.min(newLeft, maxX))}px`;
-            currentWindow.style.top = `${Math.max(0, Math.min(newTop, maxY))}px`;
-        }
+        dragPosition = {left: Math.max(0, Math.min(newLeft, dragMaxX)), top: Math.max(0, Math.min(newTop, dragMaxY))};
+        if (dragFrame === null) dragFrame = requestAnimationFrame(renderDrag);
+    }
+
+    function renderDrag() {
+        dragFrame = null;
+        if (!currentWindow || !dragPosition) return;
+        currentWindow.style.left = `${dragPosition.left}px`;
+        currentWindow.style.top = `${dragPosition.top}px`;
+        dragPosition = null;
     }
     
     function stopDragging() {
+        if (dragFrame !== null) cancelAnimationFrame(dragFrame);
+        renderDrag(); // Keep the last pointer position, even on a quick release.
         isDragging = false;
         currentWindow = null;
         document.body.style.cursor = 'default';
@@ -131,6 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function openGameWindow() {
         const gameWindow = document.getElementById('gameWindow');
         if (gameWindow) {
+            const frame = gameWindow.querySelector('iframe[data-src]');
+            if (frame) {
+                frame.src = frame.dataset.src;
+                frame.removeAttribute('data-src'); // Retain the game and progress on reopen.
+            }
             gameWindow.style.display = 'block';
             gameWindow.style.zIndex = getHighestZIndex() + 1;
             
@@ -250,6 +248,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const tabList = aboutWindow.querySelector('.window-body');
         if (!tabList) return;
+        if (tabList.dataset.tabsInitialized) return;
+        tabList.dataset.tabsInitialized = 'true';
     
         const tabs = Array.from(tabList.querySelectorAll('a[href^="#"]'));
         const panels = Array.from(aboutWindow.querySelectorAll('[role="tabpanel"]'));
@@ -519,12 +519,22 @@ document.addEventListener('DOMContentLoaded', () => {
     
     document.addEventListener('mouseup', stopDragging);
     document.addEventListener('touchend', stopDragging);
+    document.addEventListener('touchcancel', stopDragging);
+    window.addEventListener('resize', stopDragging);
     
     document.addEventListener('selectstart', e => isDragging && e.preventDefault());
     document.addEventListener('dragstart', e => isDragging && e.preventDefault());
 
-    updateClock();
-    const clockInterval = setInterval(updateClock, 1000);
+    let clockTimer;
+    function syncClock() {
+        clearTimeout(clockTimer);
+        if (document.hidden) { stopDragging(); return; }
+        updateClock();
+        // The clock displays minutes. Align with the next minute boundary.
+        clockTimer = setTimeout(syncClock, 60000 - Date.now() % 60000);
+    }
+    document.addEventListener('visibilitychange', syncClock);
+    syncClock();
 
     // window opening from icons and start menu
     document.querySelectorAll('[data-window]').forEach(item => {
@@ -541,19 +551,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // setup subwindow listeners
     setupSubWindowListeners();
 
-    // clean up on page unload
-    window.addEventListener('unload', () => {
-        clearInterval(clockInterval);
-        document.removeEventListener('click', handleStartMenu);
-        document.removeEventListener('click', handleWindowClick);
-        document.removeEventListener('click', handleCloseButton);
-        document.removeEventListener('mousedown', startDragging);
-        document.removeEventListener('touchstart', startDragging);
-        document.removeEventListener('mousemove', drag);
-        document.removeEventListener('touchmove', drag);
-        document.removeEventListener('mouseup', stopDragging);
-        document.removeEventListener('touchend', stopDragging);
-    });
+    // Document-owned listeners are collected with the page; retaining them also
+    // lets the browser restore this desktop from its back/forward cache.
 
     // initialize layout
     if (typeof updateLayoutForEra === 'function') {
@@ -562,7 +561,16 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSystemTabs();
 });
 
+let cryptoRequest;
 async function fetchCryptoPrices() {
+    if (cryptoRequest) return cryptoRequest;
+    cryptoRequest = loadCryptoPrices();
+    try { return await cryptoRequest; }
+    finally { cryptoRequest = null; }
+}
+
+async function loadCryptoPrices() {
+    let timeoutId;
     try {
         // Add rate limiting
         const lastFetch = localStorage.getItem('lastFetchTime');
@@ -578,7 +586,7 @@ async function fetchCryptoPrices() {
         
         // Add API call timeout
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+        timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
         
         const response = await fetch(
             'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,master-of-glasses&vs_currencies=usd&include_24hr_change=true', 
@@ -640,6 +648,8 @@ async function fetchCryptoPrices() {
             pricesDiv.textContent = error.message || 'Error loading prices. Please try again.';
         }
         console.error('Crypto price fetch error:', error);
+    } finally {
+        clearTimeout(timeoutId);
     }
 }
 
