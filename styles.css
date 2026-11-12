@@ -1284,6 +1284,74 @@ a:focus-visible, button:focus-visible { outline: 2px dotted #000080; outline-off
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
 
+/* Mobile windows: one bounded scroller, independent of content height.
+   Keep this after the legacy mobile rules so fixed feature sizes cannot clip. */
+@media (max-width: 768px) {
+    body > .window,
+    body > .window.maximized,
+    body > #learningWindow,
+    body > #gameWindow,
+    body > #projectsWindow,
+    body > #cryptoWindow {
+        top: calc(8px + env(safe-area-inset-top, 0px)) !important;
+        left: calc(8px + env(safe-area-inset-left, 0px)) !important;
+        right: calc(8px + env(safe-area-inset-right, 0px)) !important;
+        width: auto !important;
+        height: auto !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        max-width: none !important;
+        max-height: calc(100vh - 72px) !important;
+        max-height: calc(100dvh - 72px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important;
+        transform: none !important;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    body > .window > .window-content,
+    body > #learningWindow > .window-content,
+    body > #gameWindow > .window-content,
+    body > #cryptoWindow > .window-content {
+        height: auto !important;
+        min-height: 0;
+        max-height: none !important;
+        overflow: visible !important;
+        overflow-wrap: anywhere;
+    }
+
+    body > .window.maximized,
+    body > #learningWindow.maximized,
+    body > #gameWindow.maximized,
+    body > #projectsWindow.maximized,
+    body > #cryptoWindow.maximized {
+        height: calc(100vh - 72px) !important;
+        height: calc(100dvh - 72px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important;
+    }
+
+    /* About tabs are panels inside a window, not floating desktop windows. */
+    #aboutWindow .window[role="tabpanel"] {
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        max-height: none !important;
+        transform: none !important;
+        margin: 0 !important;
+    }
+
+    .project-folders { grid-template-columns: minmax(0, 1fr); }
+    .project-folders button,
+    .project-card > div { min-width: 0; }
+    .project-card { gap: 10px; padding: 12px; }
+    .project-card a,
+    .project-card button { max-width: 100%; white-space: normal; }
+    #gameWindow iframe {
+        display: block;
+        width: 100%;
+        height: 320px;
+        height: min(440px, calc(100dvh - 150px));
+    }
+}
+
 /* External project links share the raised desktop-button appearance. */
 .project-card a,
 .project-card button {
